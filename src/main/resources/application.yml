@@ -1,0 +1,15 @@
+server:
+  port: 8086
+spring:
+  datasource:
+    angelinaDataSource:
+      url: jdbc:mysql://localhost:3306/arknights?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=UTC
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+    servlet:
+      multipart:
+        # 单个文件最大限制 类型是datasize，单位kb
+        max-file-size: 20480
+        # 单次请求最大限制
+        max-request-size: 20480

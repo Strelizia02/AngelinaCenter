@@ -4,6 +4,8 @@ public class LoginInfo {
     
     private Boolean ok;
     
+    private String token;
+    
     private UserInfo userInfo;
 
     public Boolean getOk() {

@@ -35,7 +35,7 @@ public class LoginController {
     }
 
     /**
-     * 使用验证码登录的方法
+     * 检查验证码是否通过
      * @param loginInfo 登录信息
      * @return 登录人信息
      */
@@ -59,8 +59,26 @@ public class LoginController {
      * @param loginInfo 注册信息
      * @return 注册成功的个人信息
      */
-    @PostMapping("creatCaptcha")
+    @PostMapping("register")
     public JsonResult<LoginInfo> register(@RequestBody LoginInfo loginInfo) {
+        return JsonResult.success(loginService.register(loginInfo));
+    }
+    
+    /**
+     * 获取一个RSA公钥
+     * @return 公钥字符串，公钥编号
+     */
+    @GetMapping("getRSAPublicKey")
+    public JsonResult<LoginInfo> getRSAPublicKey() {
+        return JsonResult.success(loginService.register(loginInfo));
+    }
+    
+    /**
+     * 判断id是否重复
+     * @return true/false
+     */
+    @GetMapping("idRepeats")
+    public JsonResult<LoginInfo> idRepeats((@Requestparam String id) {
         return JsonResult.success(loginService.register(loginInfo));
     }
 }

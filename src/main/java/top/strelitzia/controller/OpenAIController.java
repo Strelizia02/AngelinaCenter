@@ -45,13 +45,13 @@ public class OpenAIController {
     }
 
     /**
-     * 调用付款接口，购买OpenAI的apikey的token个数
+     * 分发token，由超级管理员给用户分配token
      * @param id
      * @return
      */
     @Token
-    @PostMapping("getApiKey")
-    public JsonResult<String> buyOpenAiToken(@RequestParam String id) {
+    @PostMapping("addOpenAiToken")
+    public JsonResult<String> addOpenAiToken(@RequestParam String id) {
         String s = openAIService.buyOpenAiToken(id);
         return JsonResult.success(s);
     }

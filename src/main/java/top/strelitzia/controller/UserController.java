@@ -31,17 +31,19 @@ public class UserController {
     @Token
     @GetMapping("getUserProperty")
     public JsonResult<UserProperty> getUserProperty(@RequestParam String id) {
+        //详细资产包括：每个文件的剩余下载次数。token余额，token已使用额度，调用次数
         return JsonResult.success(userPropertyService.getUserProperty(id));
     }
 
     /**
-     * 查询某人的详细数据
+     * 查询某人的个人信息
      * @param id 登录人id
      * @return 登录人的个人信息
      */
     @Token
     @GetMapping("getUserInfo")
     public JsonResult<UserProperty> getUserInfo(@RequestParam String id) {
+        //TODO 个人信息包括id，name，账号的属性，头像等，只有部分允许修改
         return JsonResult.success(userPropertyService.getUserProperty(id));
     }
     

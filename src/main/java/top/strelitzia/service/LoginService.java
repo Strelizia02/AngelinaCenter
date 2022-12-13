@@ -1,9 +1,13 @@
 package top.strelitzia.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+import top.strelitzia.dao.UserMapper;
 import top.strelitzia.models.Captcha;
 import top.strelitzia.models.LoginInfo;
 import top.strelitzia.models.UserInfo;
+import top.strelitzia.util.RSAUtil;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
@@ -12,18 +16,27 @@ import java.util.Map;
 @Service
 public class LoginService {
 
+    @Autowired
+    private RSAUtil rsaUtil;
+
+    @Autowired
+    private UserMapper userMapper;
+
     public static final Map<String, Captcha> captchaMap = new HashMap<>();
 
     public LoginInfo pwdLogin(UserInfo userInfo) {
         String id = userInfo.getId();
-        String pwd = userInfo.getPwd();
-
-        UserInfo userInfo1 = loginMapper.selectUserInfo(id);
-
+        String pwd = rsaUtil.decryptWithPrivate(userInfo.getPwd());
         LoginInfo loginInfo = new LoginInfo();
-        if (pwd != null && pwd.equals(DigestUtils.md5DigestAsHex(userInfo1.getPwd().getBytes()))) {
-            loginInfo.setOk(true);
-            loginInfo.setUserInfo(userInfo1);
+
+        if (pwd != null) {
+            UserInfo userInfo1 = userMapper.selectUserInfo(id);
+            if (pwd.equals(DigestUtils.md5DigestAsHex(userInfo1.getPwd().getBytes()))) {
+                loginInfo.setOk(true);
+                loginInfo.setUserInfo(userInfo1);
+            } else {
+                loginInfo.setOk(false);
+            }
         } else {
             loginInfo.setOk(false);
         }
@@ -36,9 +49,9 @@ public class LoginService {
     public LoginInfo captchaLogin(String id) {
         LoginInfo loginInfo = new LoginInfo();
         if (captchaMap.containsKey(id)) {
-            if (captchaMap.get(id).getSend()) {
+            if (captchaMap.get(id).getIsSend()) {
                 loginInfo.setOk(true);
-                loginInfo.setUserInfo(loginMapper.selectUserInfo(id));
+                loginInfo.setUserInfo(userMapper.selectUserInfo(id));
             } else {
                 loginInfo.setOk(false);
             }
@@ -56,7 +69,7 @@ public class LoginService {
             Captcha captchaObj = captchaMap.get(id);
 
             if (captchaObj.getCaptcha().equals(captcha)) {
-                captchaObj.setSend(true);
+                captchaObj.setIsSend(true);
             }
             return true;
         } else {
@@ -71,7 +84,7 @@ public class LoginService {
             sb.append(random.nextInt(10));
         }
 
-        captcha.put(id, new Captcha(id, sb.toString()));
+        captchaMap.put(id, new Captcha(id, sb.toString()));
 
         return sb.toString();
     }
@@ -79,14 +92,16 @@ public class LoginService {
     /**
      * 删除验证码方法
      */
-    public Boolean removeCaptcha() {
-        captchaMap.removeIf(captcha.getTimestamp() - System.currentTimeMillis() / 1000 / 60 >= 10);
+    public void removeCaptcha() {
+        for (String id: captchaMap.keySet()) {
+            if (System.currentTimeMillis() - captchaMap.get(id).getTimestamp() >= 60 * 1000) {
+                captchaMap.remove(id);
+            }
+        }
     }
 
-
-
     public UserInfo register(UserInfo userInfo) {
-        loginMapper.insertUserInfo(userInfo);
+        userMapper.insertUserInfo(userInfo);
         return userInfo;
     }
 }

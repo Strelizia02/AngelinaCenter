@@ -4,10 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
-import top.strelitzia.models.LoginInfo;
-import top.strelitzia.models.UserProperty;
+import top.strelitzia.models.*;
 import top.strelitzia.service.UserPropertyService;
 import top.strelitzia.vo.JsonResult;
+
+import java.util.List;
 
 
 /**
@@ -30,7 +31,7 @@ public class DataController {
     @GetMapping("getNotice")
     public JsonResult<List<Notice>> getNotice() {
         //TODO 直接和获取公告（文字+图片）列表，前端按照列表轮播
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
   
     /**
@@ -43,7 +44,7 @@ public class DataController {
       //TODO 这里要做权限校验，看看这个人有没有权限编辑
         
         //TODO 编辑公告，要有图片的修改和文字的修改，图片保存在本地然后数据库存地址
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
 
     /**
@@ -51,10 +52,10 @@ public class DataController {
      * @return true/false
      */
     @Token
-    @DeletetMapping("deleteNotice")
+    @DeleteMapping("deleteNotice")
     public JsonResult<Boolean> deleteNotice(@RequestParam Integer noticeId) {
       //TODO 这里要做权限校验，看看这个人有没有权限删除
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
   
     /**
@@ -65,18 +66,18 @@ public class DataController {
     @PostMapping("createNotice")
     public JsonResult<Notice> createNotice(@RequestBody Notice notice) {
       //TODO 这里要做权限校验，看看这个人有没有权限创建
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
   
     /**
      * 心跳接口
-     * @param Bot bot信息，包含了一个botid和其下账号的在线信息
+     * @param bot bot信息，包含了一个botid和其下账号的在线信息
      * @return true/false
      */
     @PostMapping("heartBeats")
     public JsonResult<Boolean> heartBeats(@RequestBody Bot bot) {
       //TODO 心跳接口，要传过来Bot的id，所有账号的在线情况，返回Botid（第一次心跳需要生成id）
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
   
     /**
@@ -87,7 +88,7 @@ public class DataController {
     @PostMapping("getBotList")
     public JsonResult<List<Bot>> getBotList() {
         //TODO 数据库里记录的是每个账号的最后一次心跳时间，超过五分钟没有心跳就算离线
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
   
     /**
@@ -97,7 +98,7 @@ public class DataController {
     @PostMapping("getBotBoard")
     public JsonResult<BotData> getBotBoard() {
         //TODO 统计一下，返回一个数据量少一点的
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
   
     /**
@@ -105,28 +106,17 @@ public class DataController {
      * @return true/false
      */
     @PostMapping("getBotBoard")
-    public JsonResult<BotData> pushData(@RequestBody BotData botData) {
-        //TODO 同上
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+    public JsonResult<Boolean> pushData(@RequestBody List<Function> list) {
+        return JsonResult.success();
     }
   
     /**
      * 获取全部功能的列表
-     * @return 每个功能的详细调用次数(按小时统计)
+     * @return 每个功能的详细调用次数
      */
     @Token
     @PostMapping("getFuncList")
     public JsonResult<List<Function>> getFuncList() {
-        //TODO 按小时统计，超过24小时的合并成历史数据
-        return JsonResult.success(userPropertyService.getUserProperty(id));
-    }
-  
-    /**
-     * 获取最近12小时的调用次数数据
-     * @return 调用次数
-     */
-    @PostMapping("getFuncBoard")
-    public JsonResult<List<Long>> getFuncBoard() {
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
 }

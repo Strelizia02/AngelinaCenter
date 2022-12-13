@@ -2,10 +2,7 @@ package top.strelitzia.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.strelitzia.models.LoginInfo;
 import top.strelitzia.service.LoginService;
 import top.strelitzia.vo.JsonResult;
@@ -31,7 +28,7 @@ public class LoginController {
      */
     @PostMapping("pwd")
     public JsonResult<LoginInfo> pwdLogin(@RequestBody LoginInfo loginInfo) {
-        return JsonResult.success(loginService.pwdLogin(loginInfo));
+        return JsonResult.success();
     }
 
     /**
@@ -41,7 +38,7 @@ public class LoginController {
      */
     @PostMapping("captcha")
     public JsonResult<LoginInfo> captchaLogin(@RequestBody LoginInfo loginInfo) {
-        return JsonResult.success(loginService.captchaLogin(loginInfo));
+        return JsonResult.success();
     }
 
     /**
@@ -51,7 +48,7 @@ public class LoginController {
      */
     @PostMapping("creatCaptcha")
     public JsonResult<String> creatCaptcha(@RequestBody LoginInfo loginInfo) {
-        return JsonResult.success(loginService.creatCaptcha(loginInfo));
+        return JsonResult.success();
     }
 
     /**
@@ -61,7 +58,7 @@ public class LoginController {
      */
     @PostMapping("register")
     public JsonResult<LoginInfo> register(@RequestBody LoginInfo loginInfo) {
-        return JsonResult.success(loginService.register(loginInfo));
+        return JsonResult.success();
     }
     
     /**
@@ -70,7 +67,7 @@ public class LoginController {
      */
     @GetMapping("getRSAPublicKey")
     public JsonResult<LoginInfo> getRSAPublicKey() {
-        return JsonResult.success(loginService.register(loginInfo));
+        return JsonResult.success();
     }
     
     /**
@@ -78,7 +75,7 @@ public class LoginController {
      * @return true/false
      */
     @GetMapping("idRepeats")
-    public JsonResult<LoginInfo> idRepeats((@Requestparam String id) {
-        return JsonResult.success(loginService.register(loginInfo));
+    public JsonResult<LoginInfo> idRepeats(@RequestParam String id) {
+        return JsonResult.success();
     }
 }

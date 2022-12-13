@@ -3,6 +3,7 @@ package top.strelitzia.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
@@ -12,6 +13,7 @@ import top.strelitzia.config.properties.RedisPoolProperties;
 import java.util.HashSet;
 import java.util.Set;
 
+@Configuration
 public class RedisPoolConfig {
     @Autowired
     private RedisPoolProperties redisPoolProperties;
@@ -63,7 +65,7 @@ public class RedisPoolConfig {
      * @return JedisCluster  使用完成后不需要手动释放连接，返回客户端， 使用完成后不需要手动释放连接， 客户端会自动释放连接
      */
     @Bean
-    @Qualifier("JedisCluster")
+    @Qualifier("jedisCluster")
     public JedisCluster getJedisCluster() {
         return new JedisCluster(getSet(), initPoolConfig());
     }

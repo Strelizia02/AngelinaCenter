@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
 import top.strelitzia.models.LoginInfo;
+import top.strelitzia.models.UserInfo;
 import top.strelitzia.models.UserProperty;
 import top.strelitzia.service.UserPropertyService;
 import top.strelitzia.vo.JsonResult;
@@ -42,9 +43,9 @@ public class UserController {
      */
     @Token
     @GetMapping("getUserInfo")
-    public JsonResult<UserProperty> getUserInfo(@RequestParam String id) {
+    public JsonResult<UserInfo> getUserInfo(@RequestParam String id) {
         //TODO 个人信息包括id，name，账号的属性，头像等，只有部分允许修改
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+        return JsonResult.success();
     }
     
     /**
@@ -54,7 +55,7 @@ public class UserController {
      */
     @Token
     @PostMapping("editUserInfo")
-    public JsonResult<UserProperty> editUserInfo(@Requestbody UserInfo userInfo) {
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+    public JsonResult<UserInfo> editUserInfo(@RequestBody UserInfo userInfo) {
+        return JsonResult.success();
     }
 }

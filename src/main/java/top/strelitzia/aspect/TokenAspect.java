@@ -21,9 +21,6 @@ public class TokenAspect {
     @Autowired
     private JedisCluster jedisCluster;
 
-//    @Autowired
-//    private HttpServletResponse response;
-
     @Autowired
     private HttpServletRequest request;
 

@@ -3,7 +3,7 @@ package top.strelitzia.models;
 /**
  * 登录信息封装
  */
-public class LoginInfo {
+public class UserInfo {
     /**
      * 登录id
      */

@@ -22,17 +22,6 @@ public class OpenAIController {
     private OpenAIService openAIService;
 
     /**
-     * 生成一个新的apiKey
-     * @param id 登录人id
-     * @return 新的api key
-     */
-    @Token
-    @PostMapping("getApiKey")
-    public JsonResult<String> getApiKey(@RequestParam String id) {
-        return JsonResult.success(openAIService.getApiKey(id));
-    }
-
-    /**
      * 转发OpenAI的接口
      * @param body OpenAI的参数体
      * @param apiKey 购买的apikey
@@ -40,6 +29,7 @@ public class OpenAIController {
      */
     @PostMapping("getApiKey")
     public JsonResult<String> openAiApi(@RequestBody OpenAiModel body, @RequestHeader(value = "apiKey", required = false) String apiKey) {
+        //TODO Header里携带id参数就可以了，直接用id校验
         String s = openAIService.sendChatGPT(body, apiKey);
         return JsonResult.success(s);
     }

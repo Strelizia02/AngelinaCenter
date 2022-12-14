@@ -6,9 +6,9 @@ import lombok.Data;
  * 接受验证的封装数据
  */
 @Data
-public class CaptchaRecive {
+public class CaptchaReceive {
 
-    private String id;
+    private Integer id;
 
     private String qq;
 

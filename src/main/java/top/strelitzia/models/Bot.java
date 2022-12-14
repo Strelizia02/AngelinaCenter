@@ -9,5 +9,5 @@ import java.util.List;
 public class Bot {
     private String id;
 
-    private List<Account> list = new ArrayList<>();
+    private List<QQ> list = new ArrayList<>();
 }

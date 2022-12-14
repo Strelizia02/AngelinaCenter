@@ -1,8 +1,14 @@
 package top.strelitzia.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.strelitzia.models.LoginInfo;
-import top.strelitzia.models.UserProperty;
+import org.springframework.util.DigestUtils;
+import top.strelitzia.dao.BotMapper;
+import top.strelitzia.dao.UserMapper;
+import top.strelitzia.models.NewPwd;
+import top.strelitzia.models.UserInfo;
+import top.strelitzia.util.RSAUtil;
+import top.strelitzia.util.TokenUtil;
 
 @Service
 public class UserService {
@@ -16,32 +22,39 @@ public class UserService {
     @Autowired
     private TokenUtil tokenUtil;
 
-    public UserProperty getUserProperty(String token) {
-        String id = tokenUtil.getTokenId(token);
-        UserProperty userproperty = userMapper.selectUserProperty(id);
-        return userproperty;
+    @Autowired
+    private BotMapper botMapper;
+
+    public UserInfo getUserProperty(String token) {
+        Integer id = tokenUtil.getTokenId(token);
+        UserInfo userInfo = userMapper.selectUserProperty(id);
+        return userInfo;
     }
     
     public UserInfo getUserInfo(String token) {
-        String id = tokenUtil.getTokenId(token);
+        Integer id = tokenUtil.getTokenId(token);
         UserInfo userInfo = userMapper.selectUserInfo(id);
         return userInfo;
     }
     
-    public Boolean editUserBot(String token, String qq) {
-        String id = tokenUtil.getTokenId(token);
+    public Boolean addUserBot(String token, String qq) {
+        Integer id = tokenUtil.getTokenId(token);
         String botId = botMapper.selectBotIdByQq(qq);
-        if (LoginService.captchaMap.containsKey(qq) && LoginService.captchaMap.get(qq).getIsSend()) {
-            //有没有验证过
-            UserInfo.insertBot(id, qq)
+        if (LoginService.captchaMap.containsKey(id) && LoginService.captchaMap.get(id).getIsSend()) {
+            botMapper.updateUser(id, botId);
             return true;
         }
         return false;
     }
+
+    public Boolean removeUserBot(String botId) {
+        botMapper.updateUser(null, botId);
+        return true;
+    }
     
     public Boolean editUserName(String token, String name) {
-        String id = tokenUtil.getTokenId(token);
-        String other = loginMapper.seleceIdByName(name);
+        Integer id = tokenUtil.getTokenId(token);
+        Integer other = userMapper.selectIdByName(name);
         if (other == null) {
             userMapper.updateName(id, name);
             return true;
@@ -51,9 +64,9 @@ public class UserService {
     }
     
     public Boolean editUserPwd(String token, NewPwd pwd) {
-        String id = tokenUtil.getTokenId(token);
+        Integer id = tokenUtil.getTokenId(token);
         if (userMapper.selectPwdById(id).equals(pwd.getOldPwd())) {
-            userMapper.updateName(id, DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(pwd.getNewPwd())));
+            userMapper.updateName(id, DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(pwd.getNewPwd()).getBytes()));
             return true;
         } else {
             return false;

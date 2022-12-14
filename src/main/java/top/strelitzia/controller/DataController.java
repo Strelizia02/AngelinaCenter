@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
 import top.strelitzia.models.*;
-import top.strelitzia.service.UserPropertyService;
+import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
 public class DataController {
 
     @Autowired
-    private UserPropertyService userPropertyService;
+    private UserService userService;
 
     /**
      * 获取全部公告信息
@@ -105,7 +105,7 @@ public class DataController {
      * 同步功能调用数据
      * @return true/false
      */
-    @PostMapping("getBotBoard")
+    @PostMapping("pushData")
     public JsonResult<Boolean> pushData(@RequestBody List<Function> list) {
         return JsonResult.success();
     }

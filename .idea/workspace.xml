@@ -4,31 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Bot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/BotData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Captcha.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Function.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Notice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="随便改改">
+      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/BotMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/aspect/TokenAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/aspect/TokenAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/config/RedisPoolConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/config/RedisPoolConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/config/properties/RedisPoolProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/config/properties/RedisPoolProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/config/RedisPoolConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/config/properties/RedisPoolProperties.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/FileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Choice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/LoginInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/LoginInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/OpenAiModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/OpenAiModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/QQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/CaptchaRecive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/CaptchaReceive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/Info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/UserProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/UserProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/models/UserProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/FileService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/RSAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/util/RSAUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/redis.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/redis.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/util/TokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/util/TokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/redis.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +78,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "E:/MyProject/ArknightsAPI",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "settings.editor.selected.configurable": "Errors",
     "spring.configuration.checksum": "64881b926a4e639c139f0d581cfd993a"
   }
 }]]></component>
@@ -129,7 +128,17 @@
       <workItem from="1670845587716" duration="9796000" />
       <workItem from="1670856875410" duration="474000" />
       <workItem from="1670938284239" duration="3965000" />
+      <workItem from="1670942314829" duration="1241000" />
+      <workItem from="1671022492845" duration="5454000" />
     </task>
+    <task id="LOCAL-00001" summary="随便改改">
+      <created>1670942598797</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670942598797</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +160,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="随便改改" />
+    <option name="LAST_COMMIT_MESSAGE" value="随便改改" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -5,8 +5,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
-import redis.clients.jedis.JedisCluster;
 import top.strelitzia.vo.JsonResult;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ public class TokenAspect {
     public static final String TOKEN_KEY = "Authorization";
 
     @Autowired
-    private JedisCluster jedisCluster;
+    private StringRedisTemplate redisTemplate;
 
     @Autowired
     private HttpServletRequest request;
@@ -36,7 +37,7 @@ public class TokenAspect {
         if (null == token){
             mes = "未检测到token，请携带token后再次请求";
         } else {
-            String id = jedisCluster.get(token);;
+            String id = redisTemplate.opsForValue().get(token);
             if (id != null) {
                 return joinPoint.proceed();
             } else {

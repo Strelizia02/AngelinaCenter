@@ -3,8 +3,11 @@ package top.strelitzia.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import top.strelitzia.models.CaptchaReceive;
 import top.strelitzia.models.LoginInfo;
+import top.strelitzia.models.UserInfo;
 import top.strelitzia.service.LoginService;
+import top.strelitzia.util.RSAUtil;
 import top.strelitzia.vo.JsonResult;
 
 
@@ -26,7 +29,7 @@ public class LoginController {
 
     /**
      * 使用密码登录的方法，用账户name和pwd登录
-     * @param loginInfo 登录信息
+     * @param userInfo 登录信息
      * @return 登录人信息
      */
     @PostMapping("pwd")
@@ -36,7 +39,7 @@ public class LoginController {
 
     /**
      * 检查验证码是否通过，用Bot的qq号和验证码登录
-     * @param loginInfo 登录信息
+     * @param qq 待验证qq
      * @return 登录人信息
      */
     @GetMapping("captcha")
@@ -46,7 +49,7 @@ public class LoginController {
 
     /**
      * 创建一个随机验证码
-     * @param loginInfo 登录信息
+     * @param qq 登录信息
      * @return 验证码字符串
      */
     @GetMapping("creatCaptcha")
@@ -56,17 +59,17 @@ public class LoginController {
     
     /**
      * 接受Bot验证
-     * @param loginInfo 登录信息
+     * @param captchaReceive 登录信息
      * @return 验证码字符串
      */
     @GetMapping("reciveCaptcha")
-    public JsonResult<Boolean> reciveCaptcha(@RequestBody CaptchaRecive captchaRecive) {
-        return JsonResult.success(loginService.receivedCaptcha(captchaRecive));
+    public JsonResult<Boolean> reciveCaptcha(@RequestBody CaptchaReceive captchaReceive) {
+        return JsonResult.success(loginService.receivedCaptcha(captchaReceive));
     }
 
     /**
      * 注册信息
-     * @param loginInfo 注册信息
+     * @param userInfo 注册信息
      * @return 注册成功的个人信息
      */
     @PostMapping("register")
@@ -79,7 +82,7 @@ public class LoginController {
      * @return 公钥字符串，公钥编号
      */
     @GetMapping("getRSAPublicKey")
-    public JsonResult<LoginInfo> getRSAPublicKey() {
-        return JsonResult.success(rSAUtil.getPublicKey);
+    public JsonResult<String> getRSAPublicKey() {
+        return JsonResult.success(rSAUtil.getPublicKey());
     }
 }

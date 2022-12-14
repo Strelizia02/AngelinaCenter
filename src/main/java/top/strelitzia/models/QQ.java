@@ -3,7 +3,7 @@ package top.strelitzia.models;
 import lombok.Data;
 
 @Data
-public class Account {
+public class QQ {
 
     private String qq;
 
@@ -11,5 +11,5 @@ public class Account {
 
     private String type;
 
-    private Boolean isOnline;
+    private Long loginTime;
 }

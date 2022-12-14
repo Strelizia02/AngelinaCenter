@@ -114,14 +114,12 @@ public class LoginService {
     public LoginInfo register(UserInfo userInfo) {
         //用户只填写账号密码
         LoginInfo loginInfo = new LoginInfo();
-        String id = loginMapper.selectIdByName(userInfo.getName());
+        Integer id = loginMapper.selectIdByName(userInfo.getName());
         if (id == null) {
             loginInfo.setOk(false);
             loginInfo.setToken("当前用户名已被占用");
             return loginInfo;
         }
-        userInfo.setIsRegister(true);
-        userInfo.setIsBot(false);
         userInfo.setPwd(DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(userInfo.getPwd())));
         userMapper.insertUserInfo(userInfo);
         loginInfo.setUserInfo(userMapper.selectUserInfoByName(userInfo.getName()));

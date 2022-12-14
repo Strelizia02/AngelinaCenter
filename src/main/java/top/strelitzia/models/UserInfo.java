@@ -16,19 +16,13 @@ public class UserInfo {
      */
     private String pwd;
     /**
-     * 是否是注册用户
+     * 名下Bot列表
      */
-    private Integer isRegister;
-    /**
-     * 是否是Bot用户
-     */
-    private Integer isBot;
+    private List<String> botList;
     /**
      * 是否是管理员
      */
     private Integer isAdmin;
 
     private String name;
-
-    private String avatar;
 }

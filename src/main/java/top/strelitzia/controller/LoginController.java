@@ -22,7 +22,7 @@ public class LoginController {
     private LoginService loginService;
 
     /**
-     * 使用密码登录的方法
+     * 使用密码登录的方法，用账户name和pwd登录
      * @param loginInfo 登录信息
      * @return 登录人信息
      */
@@ -32,13 +32,13 @@ public class LoginController {
     }
 
     /**
-     * 检查验证码是否通过
+     * 检查验证码是否通过，用Bot的qq号和验证码登录
      * @param loginInfo 登录信息
      * @return 登录人信息
      */
-    @PostMapping("captcha")
-    public JsonResult<LoginInfo> captchaLogin(@RequestBody UserInfo userInfo) {
-        return JsonResult.success();
+    @GetMapping("captcha")
+    public JsonResult<LoginInfo> captchaLogin(@RequestParam String qq) {
+        return JsonResult.success(loginService.captchaLogin(qq));
     }
 
     /**
@@ -46,9 +46,19 @@ public class LoginController {
      * @param loginInfo 登录信息
      * @return 验证码字符串
      */
-    @PostMapping("creatCaptcha")
-    public JsonResult<String> creatCaptcha(@RequestBody LoginInfo loginInfo) {
-        return JsonResult.success();
+    @GetMapping("creatCaptcha")
+    public JsonResult<String> creatCaptcha(@RequestParam String qq) {
+        return JsonResult.success(loginService.creatCaptcha(qq));
+    }
+    
+    /**
+     * 接受Bot验证
+     * @param loginInfo 登录信息
+     * @return 验证码字符串
+     */
+    @GetMapping("reciveCaptcha")
+    public JsonResult<Boolean> reciveCaptcha(@RequestBody CaptchaRecive captchaRecive) {
+        return JsonResult.success(loginService.receivedCaptcha(captchaRecive));
     }
 
     /**
@@ -57,7 +67,7 @@ public class LoginController {
      * @return 注册成功的个人信息
      */
     @PostMapping("register")
-    public JsonResult<LoginInfo> register(@RequestBody LoginInfo loginInfo) {
+    public JsonResult<LoginInfo> register(@RequestBody UserInfo userInfo) {
         return JsonResult.success();
     }
     
@@ -67,15 +77,6 @@ public class LoginController {
      */
     @GetMapping("getRSAPublicKey")
     public JsonResult<LoginInfo> getRSAPublicKey() {
-        return JsonResult.success();
-    }
-    
-    /**
-     * 判断id是否重复
-     * @return true/false
-     */
-    @GetMapping("idRepeats")
-    public JsonResult<LoginInfo> idRepeats(@RequestParam String id) {
         return JsonResult.success();
     }
 }

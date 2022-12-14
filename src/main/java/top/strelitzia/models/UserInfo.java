@@ -18,7 +18,7 @@ public class UserInfo {
     /**
      * 名下Bot列表
      */
-    private List<String> botList;
+    private List<Bot> botList;
     /**
      * 是否是管理员
      */

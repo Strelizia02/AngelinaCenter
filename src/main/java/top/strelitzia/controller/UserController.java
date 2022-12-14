@@ -7,7 +7,7 @@ import top.strelitzia.annotation.Token;
 import top.strelitzia.models.LoginInfo;
 import top.strelitzia.models.UserInfo;
 import top.strelitzia.models.UserProperty;
-import top.strelitzia.service.UserPropertyService;
+import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 
 
@@ -22,7 +22,7 @@ import top.strelitzia.vo.JsonResult;
 public class UserController {
 
     @Autowired
-    private UserPropertyService userPropertyService;
+    private UserService userService;
 
     /**
      * 查询某人的详细资产数据
@@ -31,9 +31,9 @@ public class UserController {
      */
     @Token
     @GetMapping("getUserProperty")
-    public JsonResult<UserProperty> getUserProperty(@RequestParam String id) {
-        //详细资产包括：每个文件的剩余下载次数。token余额，token已使用额度，调用次数
-        return JsonResult.success(userPropertyService.getUserProperty(id));
+    public JsonResult<UserProperty> getUserProperty(@RequestHeader String token) {
+        //详细资产包括：token余额，token已使用额度，调用次数
+        return JsonResult.success(userService.getUserProperty(token));
     }
 
     /**
@@ -43,19 +43,38 @@ public class UserController {
      */
     @Token
     @GetMapping("getUserInfo")
-    public JsonResult<UserInfo> getUserInfo(@RequestParam String id) {
-        //TODO 个人信息包括id，name，账号的属性，头像等，只有部分允许修改
-        return JsonResult.success();
+    public JsonResult<UserInfo> getUserInfo(@RequestHeader String token) {
+        return JsonResult.success(userService.getUserInfo(token));
     }
     
     /**
-     * 修改某人的详细数据
+     * 账号修改名字
      * @param userInfo 登录人个人信息
      * @return 登录人的个人信息
      */
     @Token
-    @PostMapping("editUserInfo")
-    public JsonResult<UserInfo> editUserInfo(@RequestBody UserInfo userInfo) {
-        return JsonResult.success();
+    @GetMapping("editUserName")
+    public JsonResult<Boolean> editUserName(@RequestHeader String token, @RequestParam String name) {
+        return JsonResult.success(userService.editUserName(name));
+    }
+    
+    /**
+     * 账号绑定Bot
+     * @param qq 待绑定账号
+     */
+    @Token
+    @GetMapping("editUserBot")
+    public JsonResult<Boolean> editUserBot(@RequestHeader String token, @RequestParam String qq) {
+        return JsonResult.success(userService.editUserBot(qq));
+    }
+    
+    /**
+     * 账号修改密码
+     * @param pwd 密码加密字符串
+     */
+    @Token
+    @PostMapping("editUserPwd")
+    public JsonResult<Boolean> editUserPwd(@RequestHeader String token, @RequestBody NewPwd pwd) {
+        return JsonResult.success(userService.editUserPwd(pwd));
     }
 }

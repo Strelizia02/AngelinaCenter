@@ -33,6 +33,7 @@ public class LoginService {
             UserInfo userInfo1 = userMapper.selectUserInfo(id);
             if (pwd.equals(DigestUtils.md5DigestAsHex(userInfo1.getPwd().getBytes()))) {
                 loginInfo.setOk(true);
+                loginInfo.setToken();
                 loginInfo.setUserInfo(userInfo1);
             } else {
                 loginInfo.setOk(false);

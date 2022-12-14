@@ -38,7 +38,7 @@ public class LoginService {
         //先对密码进行解密操作，然后对比Md5
         if (pwd != null) {
             UserInfo userInfo1 = userMapper.selectUserInfo(id);
-            if (pwd.equals(DigestUtils.md5DigestAsHex(userInfo1.getPwd().getBytes()))) {
+            if (pwd.equals(userInfo1.getPwd().getBytes())) {
                 loginInfo.setOk(true);
                 loginInfo.setToken(tokenUtil.createToken(id));
                 loginInfo.setUserInfo(userInfo1);
@@ -122,6 +122,7 @@ public class LoginService {
         }
         userInfo.setIsRegister(true);
         userInfo.setIsBot(false);
+        userInfo.setPwd(DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(userInfo.getPwd())));
         userMapper.insertUserInfo(userInfo);
         loginInfo.setUserInfo(userMapper.selectUserInfoByName(userInfo.getName()));
         loginInfo.setOk(true);

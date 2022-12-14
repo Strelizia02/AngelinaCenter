@@ -13,6 +13,4 @@ public class CaptchaRecive {
     private String qq;
 
     private String captcha;
-
-    private String publicKey;
 }

@@ -27,8 +27,8 @@ public class LoginController {
      * @return 登录人信息
      */
     @PostMapping("pwd")
-    public JsonResult<LoginInfo> pwdLogin(@RequestBody LoginInfo loginInfo) {
-        return JsonResult.success();
+    public JsonResult<LoginInfo> pwdLogin(@RequestBody UserInfo userInfo) {
+        return JsonResult.success(loginService.pwdLogin(userInfo));
     }
 
     /**
@@ -37,7 +37,7 @@ public class LoginController {
      * @return 登录人信息
      */
     @PostMapping("captcha")
-    public JsonResult<LoginInfo> captchaLogin(@RequestBody LoginInfo loginInfo) {
+    public JsonResult<LoginInfo> captchaLogin(@RequestBody UserInfo userInfo) {
         return JsonResult.success();
     }
 

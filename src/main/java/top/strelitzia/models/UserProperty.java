@@ -3,14 +3,14 @@ package top.strelitzia.models;
 import lombok.Data;
 
 /**
- * 更详细的个人信息
+ * 个人资产信息
  */
 @Data
 public class UserProperty {
     /**
      * 登录id
      */
-    private String id;
+    private Integer id;
 
     /**
      * 拥有的token数量
@@ -18,9 +18,12 @@ public class UserProperty {
     private Integer token;
 
     /**
-     * 拥有的下载次数
+     * 已消耗的token
      */
-    private Integer download;
-
-    private String apiKey;
+    private Integer useToken;
+    
+    /**
+     * 已调用次数
+     */
+    private Integer count;
 }

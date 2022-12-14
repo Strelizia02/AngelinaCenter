@@ -30,7 +30,7 @@ public class LoginService {
     public LoginInfo pwdLogin(UserInfo userInfo) {
         //先从登录信息里提取id
         String name = userInfo.getName();
-        String id = loginMapper.selectIdByName(name);
+        String id = userMapper.selectIdByName(name);
 
         String pwd = rsaUtil.decryptWithPrivate(userInfo.getPwd());
         LoginInfo loginInfo = new LoginInfo();
@@ -57,17 +57,13 @@ public class LoginService {
     public LoginInfo captchaLogin(String qq) {
         //先通过qq查到要登录哪个id
         LoginInfo loginInfo = new LoginInfo();
-        if (captchaMap.containsKey(qq)) {
+        if (captchaMap.containsKey(qq) && captchaMap.get(qq).getIsSend()) {
             //有没有验证过
-            if (captchaMap.get(qq).getIsSend()) {
-                String id = loginMapper.selectIdByQq(qq);
-                loginInfo.setOk(true);
-                loginInfo.setToken(tokenUtil.createToken(id));
-                loginInfo.setUserInfo(userMapper.selectUserInfo(id));
-                captchaMap.remove(qq)
-            } else {
-                loginInfo.setOk(false);
-            }
+            String id = loginMapper.selectIdByQq(qq);
+            loginInfo.setOk(true);
+            loginInfo.setToken(tokenUtil.createToken(id));
+            loginInfo.setUserInfo(userMapper.selectUserInfo(id));
+            captchaMap.remove(qq)
         } else {
             loginInfo.setOk(false);
         }

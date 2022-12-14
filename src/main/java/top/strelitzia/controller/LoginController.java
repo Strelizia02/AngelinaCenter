@@ -17,6 +17,9 @@ import top.strelitzia.vo.JsonResult;
 @RestController
 @Slf4j
 public class LoginController {
+    
+    @Autowired
+    private RSAUtil rSAUtil;
 
     @Autowired
     private LoginService loginService;
@@ -68,7 +71,7 @@ public class LoginController {
      */
     @PostMapping("register")
     public JsonResult<LoginInfo> register(@RequestBody UserInfo userInfo) {
-        return JsonResult.success();
+        return JsonResult.success(loginService.register(userInfo));
     }
     
     /**
@@ -77,6 +80,6 @@ public class LoginController {
      */
     @GetMapping("getRSAPublicKey")
     public JsonResult<LoginInfo> getRSAPublicKey() {
-        return JsonResult.success();
+        return JsonResult.success(rSAUtil.getPublicKey);
     }
 }

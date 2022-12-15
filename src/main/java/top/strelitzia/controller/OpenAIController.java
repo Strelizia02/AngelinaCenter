@@ -28,8 +28,9 @@ public class OpenAIController {
      * @return 返回结果
      */
     @PostMapping("getApiKey")
-    public JsonResult<String> openAiApi(@RequestBody OpenAiModel body, @RequestHeader(value = "id", required = false) String id) {
-        Info info = openAIService.sendChatGPT(body, apiKey)
+    public JsonResult<String> openAiApi(@RequestBody OpenAiModel body, @RequestHeader(value = "botId", required = false) String botId) {
+        //QQ号容易伪造，Botid不好伪造
+        Info info = openAIService.sendChatGPT(body, botId);
         return JsonResult.success(info);
     }
 
@@ -40,8 +41,8 @@ public class OpenAIController {
      */
     @Token
     @PostMapping("addOpenAiToken")
-    public JsonResult<String> addOpenAiToken(@RequestParam String id) {
-        String s = openAIService.buyOpenAiToken(id);
+    public JsonResult<String> addOpenAiToken(@RequestHeader(value = "Author", required = false) String token, @RequestParam String id, @RequestParam Long num) {
+        String s = openAIService.buyOpenAiToken(token,id, num);
         return JsonResult.success(s);
     }
 }

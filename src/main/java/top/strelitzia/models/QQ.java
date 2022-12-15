@@ -14,8 +14,4 @@ public class QQ {
     private Long loginTime;
         
     private Boolean isOnline;
-    
-    private Integer userId;
-
-    private String botId;
 }

@@ -52,9 +52,9 @@ public class DataController {
      */
     @Token
     @DeleteMapping("deleteNotice")
-    public JsonResult<Boolean> deleteNotice(@RequestParam Integer noticeId) {
+    public JsonResult<Boolean> deleteNotice(@RequestHeader String token, @RequestParam Integer noticeId) {
       //TODO 这里要做权限校验，看看这个人有没有权限删除
-        return JsonResult.success();
+        return JsonResult.success(noticeService.deleteNotice(token, noticeId));
     }
   
     /**
@@ -63,9 +63,9 @@ public class DataController {
      */
     @Token
     @PostMapping("createNotice")
-    public JsonResult<Notice> createNotice(@RequestBody Notice notice) {
+    public JsonResult<Notice> createNotice(@RequestHeader String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "text") @RequestParam String text) {
       //TODO 这里要做权限校验，看看这个人有没有权限创建
-        return JsonResult.success();
+        return JsonResult.success(noticeService.createNotice(token, text, img));
     }
   
     /**

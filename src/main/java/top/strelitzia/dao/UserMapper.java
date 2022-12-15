@@ -20,5 +20,10 @@ public interface UserMapper {
     Integer updateName(@Param("id") Integer id, @Param("name") String name);
 
     UserInfo selectUserInfoByName(@Param("name") String name);
+
     Integer selectIdByQq(@Param("qq") String qq);
+
+    Integer selectTokenByBotId(@Param("botId") String botId);
+
+    Integer updateTokenByBotId(@Param("botId") String botId, @Param("num") Long num);
 }

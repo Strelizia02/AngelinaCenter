@@ -2,6 +2,9 @@ package top.strelitzia.models;
 
 import lombok.Data;
 
+/**
+ * openAI的封装
+ */
 @Data
 public class OpenAiModel {
     private String model;

@@ -7,7 +7,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import top.strelitzia.dao.UserMapper;
+import top.strelitzia.models.Info;
 import top.strelitzia.models.OpenAiModel;
+import top.strelitzia.models.UserInfo;
+import top.strelitzia.util.TokenUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,15 +22,13 @@ public class OpenAIService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public String getApiKey(String id) {
-        return null;
-    }
+    @Autowired
+    private UserMapper userMapper;
 
-    public String buyOpenAiToken(String id) {
-        return null;
-    }
+    @Autowired
+    private TokenUtil tokenUtil;
 
-    public String sendChatGPT(OpenAiModel openAiModel, String botId) {
+    public Info sendChatGPT(OpenAiModel openAiModel, String botId) {
         //TODO 验证apikey的余额
         Integer num = userMapper.selectTokenByBotId(botId);
         if (num <= 0) {
@@ -44,20 +46,23 @@ public class OpenAIService {
 
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(requestBody, httpHeaders);
         String body = restTemplate.postForEntity("https://api.openai.com/v1/completions", httpEntity, String.class).getBody();
+
+        if (body == null) {
+            return new Info(false, "接口错误");
+        }
+        Long totalToken = new JSONObject(body).getJSONObject("token").getLong("totalToken");
         
-        Integer totalToken = new JSONObject(body).getJSONObject("token").getInt("totalToken");
-        
-        userMapper.updateTokenByBotId(id, totalToken);
-        return new Info(true, nody);
+        userMapper.updateTokenByBotId(botId, totalToken);
+        return new Info(true,  "剩余token总数" + totalToken);
     }
 
     public Boolean buyOpenAiToken(String token, String id, Long num) {
-        String adminId = tokenUtil.getTokenId(token);
+        Integer adminId = tokenUtil.getTokenId(token);
         UserInfo userInfo = userMapper.selectUserInfo(adminId);
-        if (!userinfo.getIsadmin) {
+        if (userInfo.getIsAdmin() == 0) {
             return false;
         }
-        userMapper.updateToken(id, num);
+        userMapper.updateTokenByBotId(id, num);
         return true;
     }
 }

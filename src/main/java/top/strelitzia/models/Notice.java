@@ -9,6 +9,8 @@ import lombok.Data;
 public class Notice {
     private Integer id;
 
+    private String title;
+
     private String text;
 
     private String img;

@@ -2,6 +2,9 @@ package top.strelitzia.models;
 
 import lombok.Data;
 
+/**
+ * 返回信息
+ */
 @Data
 public class Info {
 

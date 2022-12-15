@@ -1,10 +1,13 @@
 package top.strelitzia.controller;
 
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import top.strelitzia.annotation.Token;
 import top.strelitzia.models.*;
+import top.strelitzia.service.NoticeService;
 import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 
@@ -42,7 +45,7 @@ public class NoticeController {
      */
     @Token
     @PostMapping("editNotice")
-    public JsonResult<Notice> editNotice(@RequestHeader String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "id") @RequestParam Integer id, @ApiParam(value = "text") @RequestParam String text) {
+    public JsonResult<Info> editNotice(@RequestHeader String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "id") @RequestParam Integer id, @ApiParam(value = "text") @RequestParam String text) {
         return JsonResult.success(noticeService.editNotice(token, id, text, img));
     }
 
@@ -52,7 +55,7 @@ public class NoticeController {
      */
     @Token
     @DeleteMapping("deleteNotice")
-    public JsonResult<Boolean> deleteNotice(@RequestHeader String token, @RequestParam Integer noticeId) {
+    public JsonResult<Info> deleteNotice(@RequestHeader String token, @RequestParam Integer noticeId) {
       //TODO 这里要做权限校验，看看这个人有没有权限删除
         return JsonResult.success(noticeService.deleteNotice(token, noticeId));
     }
@@ -63,8 +66,7 @@ public class NoticeController {
      */
     @Token
     @PostMapping("createNotice")
-    public JsonResult<Notice> createNotice(@RequestHeader String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "text") @RequestParam String text) {
-      //TODO 这里要做权限校验，看看这个人有没有权限创建
+    public JsonResult<Info> createNotice(@RequestHeader String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "text") @RequestParam String text) {
         return JsonResult.success(noticeService.createNotice(token, text, img));
     }
   }

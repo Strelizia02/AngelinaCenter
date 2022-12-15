@@ -2,6 +2,9 @@ package top.strelitzia.models;
 
 import lombok.Data;
 
+/**
+ * QQ的字段封装
+ */
 @Data
 public class QQ {
 
@@ -14,4 +17,8 @@ public class QQ {
     private Long loginTime;
         
     private Boolean isOnline;
+
+    private String botId;
+
+    private Integer userId;
 }

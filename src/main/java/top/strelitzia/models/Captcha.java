@@ -2,6 +2,9 @@ package top.strelitzia.models;
 
 import lombok.Data;
 
+/**
+ * 登录验证码的结构
+ */
 @Data
 public class Captcha {
     private String captcha;

@@ -5,6 +5,9 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Bot的数据结构
+ */
 @Data
 public class Bot {
     private String id;

@@ -1,91 +1,44 @@
 package top.strelitzia.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.strelitzia.models.UserInfo;
+import top.strelitzia.dao.BotMapper;
+import top.strelitzia.dao.FuncMapper;
+import top.strelitzia.dao.QQMapper;
+import top.strelitzia.models.*;
+import top.strelitzia.util.TokenUtil;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DataService {
 
-    public List<Notice> getNotice() {
-      List<Notice> list = noticeMapper.selectAllNotice();  
-      return list;
-    }
-  
-    public Info editNotice(String token, Integer id, String text, MultipartFile img) {
-        Integer id = tokenUtil.getTokenId(token);
-        UserInfo userInfo = userMapper.selectUserById(id); 
+    @Autowired
+    private TokenUtil tokenUtil;
 
-        if (userInfo.getIsAdmin()) {
-            if (userInfo.getImg != null) {
-                String path = fileService.saveFile(Img);
-            } 
-            noticeMapper.updateNotice(id, text, img);
-            return new Info(true, "修改成功");
-        } else {
-            return new Info(false, "您没有权限");
-        }
-    }
-    
-    public Info createNotice(String token, String text, MultipartFile img) {
-        Integer id = tokenUtil.getTokenId(token);
-        UserInfo userInfo = userMapper.selectUserById(id); 
+    @Autowired
+    private BotMapper botMapper;
 
-        if (userInfo.getIsAdmin()) {
-            if (userInfo.getImg != null) {
-                String path = fileService.saveFile(Img);
-            } 
-            noticeMapper.insertNotice(text, img);
-            return new Info(true, "创建成功");
-        } else {
-            return new Info(false, "您没有权限");
-        }
-    }
-    
-    public Info deleteNotice(String token, Integer noticeId) {
-        Integer id = tokenUtil.getTokenId(token);
-        UserInfo userInfo = userMapper.selectUserById(id); 
+    @Autowired
+    private QQMapper qqMapper;
 
-        if (userInfo.getIsAdmin()) {
-            Notice notice = noticeMapper.selectNoticeById(noticeId);  
-            new File(notice.getImg()).deleteFile();
-            noticeMapper.deleteNotice(noticeId);
-            return new Info(true, "删除成功");
-        } else {
-            return new Info(false, "您没有权限");
-        }
-    }
+    @Autowired
+    private FuncMapper funcMapper;
     
     public String heartBeats(Bot bot) {
         if (bot.getId() == null) {
-            UUID uuid = UUID.random();
-            bot.setId(uuid);
+            UUID uuid = UUID.randomUUID();
+            bot.setId(uuid.toString());
         }
-        for (QQInfo info: bot.getQq()) {
+        for (QQ info: bot.getList()) {
             if (info.getIsOnline()) {
                 QQ qq = new QQ();
                 qq.setQq(info.getQq());
                 qq.setFrame(info.getFrame());
                 qq.setType(info.getType());
                 qq.setBotId(bot.getId());
-                qQMapper.upsertQqLogin(qq);
-            }
-        }
-        return bot.getId();
-    }
-    
-    public String heartBeats(Bot bot) {
-        if (bot.getId() == null) {
-            UUID uuid = UUID.random();
-            bot.setId(uuid);
-        }
-        for (QQInfo info: bot.getQq()) {
-            if (info.getIsOnline()) {
-                QQ qq = new QQ();
-                qq.setQq(info.getQq());
-                qq.setFrame(info.getFrame());
-                qq.setType(info.getType());
-                qq.setBotId(bot.getId());
-                qQMapper.upsertQqLogin(qq);
+                qqMapper.upsertQqLogin(qq);
             }
         }
         return bot.getId();
@@ -93,28 +46,25 @@ public class DataService {
     
     public List<Bot> getBotList(String token) {
         Integer id = tokenUtil.getTokenId(token);
-        List<Bot> list = botMapper.selectBotById(id);
-        return list;
+        return botMapper.selectBotById(id);
     }
     
     public BotData getBotBoard() {
-        BotData data = botMapper.selectCountBot();
-        return data;
+        return botMapper.selectCountBot();
     }
     
     public Boolean pushData(String token, List<Function> list) {
         Integer id = tokenUtil.getTokenId(token);
-        botMapper.updateFuncCount(id ,list);
+        funcMapper.updateFuncCount(id ,list);
+        return true;
     }
     
     public List<Function> getFuncList() {
-        List<Function> list = functionMapper.selectFunctionCount();
-        return list;
+        return funcMapper.selectFunctionCount();
     }
     
     public List<Function> getSomeOneFuncList(String token) {
         Integer id = tokenUtil.getTokenId(token);
-        List<Function> list = functionMapper.selectFunctionCountbyId(id);
-        return list;
+        return funcMapper.selectFunctionCountById(id);
     }
 }

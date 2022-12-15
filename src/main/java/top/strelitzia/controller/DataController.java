@@ -23,6 +23,9 @@ public class DataController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private NoticeService noticeService;
 
     /**
      * 获取全部公告信息
@@ -30,8 +33,7 @@ public class DataController {
      */
     @GetMapping("getNotice")
     public JsonResult<List<Notice>> getNotice() {
-        //TODO 直接和获取公告（文字+图片）列表，前端按照列表轮播
-        return JsonResult.success();
+        return JsonResult.success(noticeService.getNotice());
     }
   
     /**
@@ -40,11 +42,8 @@ public class DataController {
      */
     @Token
     @PostMapping("editNotice")
-    public JsonResult<Notice> editNotice(@RequestBody Notice notice) {
-      //TODO 这里要做权限校验，看看这个人有没有权限编辑
-        
-        //TODO 编辑公告，要有图片的修改和文字的修改，图片保存在本地然后数据库存地址
-        return JsonResult.success();
+    public JsonResult<Notice> editNotice(@RequestHeader String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "id") @RequestParam Integer id, @ApiParam(value = "text") @RequestParam String text) {
+        return JsonResult.success(noticeService.editNotice(token, id, text, img));
     }
 
     /**

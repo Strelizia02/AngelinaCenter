@@ -28,12 +28,9 @@ public class OpenAIController {
      * @return 返回结果
      */
     @PostMapping("getApiKey")
-    public JsonResult<String> openAiApi(@RequestBody OpenAiModel body, @RequestHeader(value = "apiKey", required = false) String apiKey) {
-        //TODO Header里携带id参数就可以了，直接用id校验
-        
-        //TODO 每次调用完了，要给用户统计使用量，最好也做个图表
-        String s = openAIService.sendChatGPT(body, apiKey);
-        return JsonResult.success(s);
+    public JsonResult<String> openAiApi(@RequestBody OpenAiModel body, @RequestHeader(value = "id", required = false) String id) {
+        Info info = openAIService.sendChatGPT(body, apiKey)
+        return JsonResult.success(info);
     }
 
     /**

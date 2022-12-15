@@ -12,8 +12,10 @@ public class QQ {
     private String type;
 
     private Long loginTime;
+        
+    private Boolean isOnline;
     
     private Integer userId;
-    
+
     private String botId;
 }

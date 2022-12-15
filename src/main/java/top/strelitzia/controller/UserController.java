@@ -29,7 +29,7 @@ public class UserController {
      */
     @Token
     @GetMapping("getUserProperty")
-    public JsonResult<UserInfo> getUserProperty(@RequestHeader String token) {
+    public JsonResult<UserInfo> getUserProperty(@RequestHeader(value = "Authorization", required = false) String token) {
         //详细资产包括：token余额，token已使用额度，调用次数
         return JsonResult.success(userService.getUserProperty(token));
     }
@@ -40,7 +40,7 @@ public class UserController {
      */
     @Token
     @GetMapping("getUserInfo")
-    public JsonResult<UserInfo> getUserInfo(@RequestHeader String token) {
+    public JsonResult<UserInfo> getUserInfo(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(userService.getUserInfo(token));
     }
     
@@ -51,7 +51,7 @@ public class UserController {
      */
     @Token
     @GetMapping("editUserName")
-    public JsonResult<Boolean> editUserName(@RequestHeader String token, @RequestParam String name) {
+    public JsonResult<Boolean> editUserName(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String name) {
         return JsonResult.success(userService.editUserName(token, name));
     }
     
@@ -61,7 +61,7 @@ public class UserController {
      */
     @Token
     @GetMapping("addUserBot")
-    public JsonResult<Boolean> addUserBot(@RequestHeader String token, @RequestParam String qq) {
+    public JsonResult<Boolean> addUserBot(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String qq) {
         return JsonResult.success(userService.addUserBot(token, qq));
     }
 
@@ -81,7 +81,7 @@ public class UserController {
      */
     @Token
     @PostMapping("editUserPwd")
-    public JsonResult<Boolean> editUserPwd(@RequestHeader String token, @RequestBody NewPwd pwd) {
+    public JsonResult<Boolean> editUserPwd(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody NewPwd pwd) {
         return JsonResult.success(userService.editUserPwd(token, pwd));
     }
 }

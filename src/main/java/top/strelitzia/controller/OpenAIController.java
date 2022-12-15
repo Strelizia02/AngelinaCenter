@@ -40,7 +40,7 @@ public class OpenAIController {
      */
     @Token
     @PostMapping("addOpenAiToken")
-    public JsonResult<Boolean> addOpenAiToken(@RequestHeader(value = "Author", required = false) String token, @RequestParam String id, @RequestParam Long num) {
+    public JsonResult<Boolean> addOpenAiToken(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String id, @RequestParam Long num) {
         return JsonResult.success(openAIService.buyOpenAiToken(token,id, num));
     }
 }

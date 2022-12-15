@@ -41,7 +41,7 @@ public class BotController {
      * @return true/false
      */
     @PostMapping("pushData")
-    public JsonResult<Boolean> pushData(@RequestHeader String token, @RequestBody List<Function> list) {
+    public JsonResult<Boolean> pushData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<Function> list) {
         return JsonResult.success(dataService.pushData(token, list));
     }
 }

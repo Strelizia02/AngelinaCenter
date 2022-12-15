@@ -26,9 +26,9 @@ public class OpenAIService {
         return null;
     }
 
-    public String sendChatGPT(OpenAiModel openAiModel, String id) {
+    public String sendChatGPT(OpenAiModel openAiModel, String botId) {
         //TODO 验证apikey的余额
-        Integer num = userMapper.selectTokenByBotid(id);
+        Integer num = userMapper.selectTokenByBotId(botId);
         if (num <= 0) {
             return new Info(false, "您的token余额小于0");
         }
@@ -49,5 +49,15 @@ public class OpenAIService {
         
         userMapper.updateTokenByBotId(id, totalToken);
         return new Info(true, nody);
+    }
+
+    public Boolean buyOpenAiToken(String token, String id, Long num) {
+        String adminId = tokenUtil.getTokenId(token);
+        UserInfo userInfo = userMapper.selectUserInfo(adminId);
+        if (!userinfo.getIsadmin) {
+            return false;
+        }
+        userMapper.updateToken(id, num);
+        return true;
     }
 }

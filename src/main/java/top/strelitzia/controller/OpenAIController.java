@@ -11,7 +11,7 @@ import top.strelitzia.vo.JsonResult;
 /**
  * @author strelitzia
  * @Date 2022/12/12
- * 下载文件专用接口
+ * openAI转发相关接口
  **/
 @RequestMapping("openai")
 @RestController

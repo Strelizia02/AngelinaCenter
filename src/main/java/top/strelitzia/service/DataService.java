@@ -54,4 +54,67 @@ public class DataService {
             return new Info(false, "您没有权限");
         }
     }
+    
+    public String heartBeats(Bot bot) {
+        if (bot.getId() == null) {
+            UUID uuid = UUID.random();
+            bot.setId(uuid);
+        }
+        for (QQInfo info: bot.getQq()) {
+            if (info.getIsOnline()) {
+                QQ qq = new QQ();
+                qq.setQq(info.getQq());
+                qq.setFrame(info.getFrame());
+                qq.setType(info.getType());
+                qq.setBotId(bot.getId());
+                qQMapper.upsertQqLogin(qq);
+            }
+        }
+        return bot.getId();
+    }
+    
+    public String heartBeats(Bot bot) {
+        if (bot.getId() == null) {
+            UUID uuid = UUID.random();
+            bot.setId(uuid);
+        }
+        for (QQInfo info: bot.getQq()) {
+            if (info.getIsOnline()) {
+                QQ qq = new QQ();
+                qq.setQq(info.getQq());
+                qq.setFrame(info.getFrame());
+                qq.setType(info.getType());
+                qq.setBotId(bot.getId());
+                qQMapper.upsertQqLogin(qq);
+            }
+        }
+        return bot.getId();
+    }
+    
+    public List<Bot> getBotList(String token) {
+        Integer id = tokenUtil.getTokenId(token);
+        List<Bot> list = botMapper.selectBotById(id);
+        return list;
+    }
+    
+    public BotData getBotBoard() {
+        BotData data = botMapper.selectCountBot();
+        return data;
+    }
+    
+    public Boolean pushData(String token, List<Function> list) {
+        Integer id = tokenUtil.getTokenId(token);
+        botMapper.updateFuncCount(id ,list);
+    }
+    
+    public List<Function> getFuncList() {
+        List<Function> list = functionMapper.selectFunctionCount();
+        return list;
+    }
+    
+    public List<Function> getSomeOneFuncList(String token) {
+        Integer id = tokenUtil.getTokenId(token);
+        List<Function> list = functionMapper.selectFunctionCountbyId(id);
+        return list;
+    }
 }

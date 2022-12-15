@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author strelitzia
  * @Date 2022/12/12
- * 查询用户个人资产接口
+ * 查询数据接口
  **/
 @RequestMapping("data")
 @RestController

@@ -26,16 +26,6 @@ public class DataController {
     
     @Autowired
     private NoticeService noticeService;
-
-    /**
-     * 心跳接口
-     * @param bot bot信息，包含了一个botid和其下账号的在线信息
-     */
-    @PostMapping("heartBeats")
-    public JsonResult<String> heartBeats(@RequestBody Bot bot) {
-      //TODO 心跳接口，要传过来Bot的id，所有账号的在线情况，返回Botid（第一次心跳需要生成id）
-        return JsonResult.success(dataService.heartBeats(bot));
-    }
   
     /**
      * 获取某个账号下所有Bot的列表
@@ -56,15 +46,6 @@ public class DataController {
     public JsonResult<BotData> getBotBoard() {
         //TODO 统计一下，返回一个数据量少一点的
         return JsonResult.success(dataService.getBotBoard());
-    }
-  
-    /**
-     * 同步功能调用数据
-     * @return true/false
-     */
-    @PostMapping("pushData")
-    public JsonResult<Boolean> pushData(@RequestHeader String token, @RequestBody List<Function> list) {
-        return JsonResult.success(dataService.pushData(token, list));
     }
   
     /**

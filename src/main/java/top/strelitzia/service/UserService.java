@@ -27,14 +27,12 @@ public class UserService {
 
     public UserInfo getUserProperty(String token) {
         Integer id = tokenUtil.getTokenId(token);
-        UserInfo userInfo = userMapper.selectUserProperty(id);
-        return userInfo;
+        return userMapper.selectUserProperty(id);
     }
     
     public UserInfo getUserInfo(String token) {
         Integer id = tokenUtil.getTokenId(token);
-        UserInfo userInfo = userMapper.selectUserInfo(id);
-        return userInfo;
+        return userMapper.selectUserInfo(id);
     }
     
     public Boolean addUserBot(String token, String qq) {

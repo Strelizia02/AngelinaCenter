@@ -6,5 +6,7 @@ import lombok.Data;
 public class Function {
     private String name;
 
+    private String botId;
+
     private Long count;
 }

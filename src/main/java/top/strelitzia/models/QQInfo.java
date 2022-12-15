@@ -12,4 +12,6 @@ public class QQInfo {
     private String type;
 
     private Boolean isOnline;
+    
+    private Long timestamp;
 }

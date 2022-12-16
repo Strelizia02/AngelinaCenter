@@ -4,6 +4,12 @@
     <resultMap id="BotMap" type="top.strelitzia.model.Bot">
         <result column="id" property="id" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="ram" property="ram" jdbcType="BIGINT"/>
+        <result column="cpu" property="cpu" jdbcType="BIGINT"/>
+        <result column="send" property="send" jdbcType="BIGINT"/>
+        <result column="receive" property="receive" jdbcType="BIGINT"/>
+        <result column="qq_count" property="qqCount" jdbcType="BIGINT"/>
+        <result column="group_count" property="groupCount" jdbcType="BIGINT"/>
         <collection property="QQ" ofType="top.strelitzia.models.QQ">
             <result column="qq" property="qq" jdbcType="VARCHAR"/>
             <result column="frame" property="frame" jdbcType="VARCHAR"/>
@@ -28,7 +34,7 @@
     </update>
     
     <select id="selectBotById" resultMap="BotMap">
-        SELECT b.id, b.name, q.qq, q.frame, q.type, q.login_time 
+        SELECT b.id, b.name, ram, cpu, send, receive, qq_count, group_count, q.qq, q.frame, q.type, q.login_time 
         from 
             t_user u 
             left join t_bot b on u.id = b.user_id

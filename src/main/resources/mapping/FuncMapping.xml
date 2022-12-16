@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.strelitzia.dao.FuncMapper">
     <resultMap id="FunctionMap" type="top.strelitzia.model.Function">
-        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="bot_id" property="botId" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="count" property="name" jdbcType="INTEGER"/>
+        <result column="count" property="count" jdbcType="BIGINT"/>
     </resultMap>
 
     <update id="updateFuncCount" resultType="java.lang.Integer">

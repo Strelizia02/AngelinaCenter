@@ -4,26 +4,12 @@
     <resultMap id="UserMap" type="top.strelitzia.model.UserInfo">
       <id column="id" property="id" jdbcType="INTEGER"/>
       <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
-      <collection property="Bot" ofType="top.strelitzia.models.Bot">
-        <result column="bot_id" property="id" jdbcType="VARCHAR"/>
-        <result column="bot_name" property="name" jdbcType="VARCHAR"/>
-        <collection property="QQ" ofType="top.strelitzia.models.QQ">
-            <result column="qq" property="qq" jdbcType="VARCHAR"/>
-            <result column="frame" property="frame" jdbcType="VARCHAR"/>
-            <result column="type" property="type" jdbcType="VARCHAR"/>
-            <result column="login_time" property="loginTime" jdbcType="BIGINT"/>
-        </collection>
-      </collection>
       <result column="is_admin" property="isAdmin" jdbcType="INTEGER"/>
       <result column="name" property="name" jdbcType="VARCHAR"/>
       <result column="token" property="token" jdbcType="INTEGER"/>
       <result column="useToken" property="useToken" jdbcType="INTEGER"/>
       <result column="count" property="count" jdbcType="INTEGER"/>
     </resultMap>
-    select   u.id, pwd, b.id as bot_id, b.name as bot_name, qq, frame, type, login_time, is_admin, name, token, use_token, count
-    from t_user u left join t_bot b on u.id = b.user_id
-    left join t_qq q on q.bot_id = b.id
-    where u.id = #{id}
   
   <select id ="selectUserInfo" resultType="UserMap">
     select id, pwd, is_admin, name
@@ -60,39 +46,39 @@
     where id = #{id}
   </update>
   
-  <select id ="selectUserInfo" resultType="UserMap">
+  <select id ="selectUserInfoByName" resultType="UserMap">
     select id, pwd, is_admin, name
     from t_user
     where name = #{name}
   </select>
   
-  <select id ="selectIdByQq" resultType="UserMap">
+  <select id ="selectIdByQq" resultType="java.lang.Integer">
     select b.user_id
     from t_bot b left join t_qq q on q.bot_id = b.id
     where qq = #{qq}
   </select>
   
-  <select id ="selectTokenByBotId" resultType="UserMap">
+  <select id ="selectTokenByBotId" resultType="java.lang.Integer">
     select token
     from t_user u left join t_bot b on b.user_id = u.id
     where b.id = #{botId}
   </select>
   
-  <update id ="updateTokenByBotId" resultType="UserMap">
+  <update id ="updateTokenByBotId" resultType="java.lang.Integer">
     update t_user u
      left join t_bot b on u.id = b.user_id
     set token = #{num}
     where b.id = #{botId}
   </update>
   
-  <update id ="updateUseTokenByBotId" resultType="UserMap">
+  <update id ="updateUseTokenByBotId" resultType="java.lang.Integer">
     update t_user u
      left join t_bot b on u.id = b.user_id
     set use_token = #{num}
     where b.id = #{botId}
   </update>
   
-  <update id ="updateCountByBotId" resultType="UserMap">
+  <update id ="updateCountByBotId" resultType="java.lang.Integer">
     update t_user u
      left join t_bot b on u.id = b.user_id
     set count = #{num}

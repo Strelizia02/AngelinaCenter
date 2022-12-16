@@ -13,6 +13,18 @@ public class Bot {
     private String id;
     
     private String name;
+    
+    private Long ram;
+    
+    private Long cpu;
+    
+    private Long send;
+
+    private Long receive;
+    
+    private Long qqCount;
+
+    private Long groupCount;
 
     private List<QQ> list = new ArrayList<>();
 }

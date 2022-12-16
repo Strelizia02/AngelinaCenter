@@ -95,4 +95,15 @@ CREATE TABLE `t_user`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_function`;
+CREATE TABLE `t_function`  (
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AUTO_INCREMENT COMMENT '功能名',
+  `bot_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属bot',
+  `count` bigint(0) NULL DEFAULT NULL COMMENT '调用次数',
+  PRIMARY KEY (`name`, `bot_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 SET FOREIGN_KEY_CHECKS = 1;

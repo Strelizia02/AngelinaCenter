@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.strelitzia.dao.NoticeMapper">
-  <resultMap id="FunctionMap" type="top.strelitzia.model.Notice">
-    <result column="bot_id" property="botId" jdbcType="VARCHAR"/>
-    <result column="name" property="name" jdbcType="VARCHAR"/>
-    <result column="count" property="count" jdbcType="BIGINT"/>
+  <resultMap id="NoticeMap" type="top.strelitzia.model.Notice">
+    <id column="id" property="id"/>
+    <result column="text" property="text" jdbcType="VARCHAR"/>
+    <result column="img" property=""" jdbcType="BIGINT"/>
   </resultMap>
 
   <insert id ="insertNotice" resultType="java.lang.Integer">
     insert into t_notice (text, img) values(#{text}, #{path}) 
   </insert>
 
-  <select id="selectAllNotice" resultType="top.strelitzia.model.Notice">
+  <select id="selectAllNotice" resultMap="NoticeMap">
     SELECT id, text, img from t_notice 
   </select>
 
-  <update id="updateNotice" resultMap="FunctionMap">
+  <update id="updateNotice" resultType="java.lang.Integer">
     update t_notice set
       text = #{text}, 
       img = #{path}
     where id = #{id}
   </update>
 
-  <select id="selectNoticeById" resultMap="FunctionMap">
+  <select id="selectNoticeById" resultMap="NoticeMap">
     SELECT id, text, img from t_notice where id = #{id}
   </select>
   
-  <delete id="selectNoticeById" resultMap="FunctionMap">
+  <delete id="selectNoticeById" resultType="java.lang.Integer">
     delete from t_notice where id = #{id}
   </delete>
 </mapper>

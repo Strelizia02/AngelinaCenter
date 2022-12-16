@@ -60,7 +60,6 @@ CREATE TABLE `t_bot`  (
 DROP TABLE IF EXISTS `t_notice`;
 CREATE TABLE `t_notice`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '公告id，自增',
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告名',
   `text` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告内容',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '公告图片',
   PRIMARY KEY (`id`) USING BTREE

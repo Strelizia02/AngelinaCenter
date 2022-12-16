@@ -10,7 +10,7 @@ import java.util.List;
 public interface FuncMapper {
 
     //更新功能被调用的次数
-    Integer updateFuncCount(@Param("id") Integer id , List<Function> list);
+    Integer updateFuncCount(@Param("id") Integer id , Function list);
 
     //查询所有功能的被调用次数
     List<Function> selectFunctionCount();

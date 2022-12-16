@@ -19,6 +19,4 @@ public class QQ {
     private Boolean isOnline;
 
     private String botId;
-
-    private Integer userId;
 }

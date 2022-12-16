@@ -32,7 +32,7 @@
         from 
             t_user u 
             left join t_bot b on u.id = b.user_id
-            left join t_qq q on u.id = q.user_id
+            left join t_qq q on b.id.id = q.bot_id
         where u.id = #{id}
     </select>
     

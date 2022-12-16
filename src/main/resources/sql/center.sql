@@ -51,6 +51,8 @@ CREATE TABLE `t_bot`  (
   `cpu` bigint(0) NULL DEFAULT NULL COMMENT '占用cpu',
   `send` bigint(0) NULL DEFAULT NULL COMMENT '总发送消息量',
   `receive` bigint(0) NULL DEFAULT NULL COMMENT '总接收消息量',
+  `qq_count` bigint(0) NULL DEFAULT NULL COMMENT '用户数',
+  `group_count` bigint(0) NULL DEFAULT NULL COMMENT '群数'
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 

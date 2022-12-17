@@ -36,12 +36,12 @@ public class LoginService {
         String name = userInfo.getName();
         Integer id = userMapper.selectIdByName(name);
 
-//        String pwd = DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(userInfo.getPwd()));
-        String pwd = userInfo.getPwd();
+//        String pwd = userInfo.getPwd();
         LoginInfo loginInfo = new LoginInfo();
 
         //先对密码进行解密操作，然后对比Md5
-        if (pwd != null) {
+        if (userInfo.getPwd() != null) {
+            String pwd = DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(userInfo.getPwd()).getBytes());
             String pwd1 = userMapper.selectPwdById(id);
             if (pwd.equals(pwd1)) {
                 loginInfo.setOk(true);

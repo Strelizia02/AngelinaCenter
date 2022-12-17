@@ -4,25 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="随便改改">
+    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="user和openai还没测">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/aspect/TokenAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/aspect/TokenAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/NoticeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/NoticeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/NoticeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/Captcha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/Captcha.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/CaptchaReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/CaptchaReceive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/NoticeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/NoticeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/util/RSAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/util/RSAUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/util/TokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/util/TokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/BotMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/BotMapping.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/FuncMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/FuncMapping.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/NoticeMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/NoticeMapping.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/UserMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/UserMapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +117,7 @@
       <workItem from="1671022492845" duration="7787000" />
       <workItem from="1671111396588" duration="6768000" />
       <workItem from="1671190747182" duration="9832000" />
-      <workItem from="1671255732968" duration="19281000" />
+      <workItem from="1671255732968" duration="21118000" />
     </task>
     <task id="LOCAL-00001" summary="随便改改">
       <created>1670942598797</created>
@@ -191,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671269301249</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="user和openai还没测">
+      <created>1671284659615</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671284659615</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,20 +207,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="随便改改" />
-    <option name="LAST_COMMIT_MESSAGE" value="随便改改" />
+    <MESSAGE value="user和openai还没测" />
+    <option name="LAST_COMMIT_MESSAGE" value="user和openai还没测" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/util/TokenUtil.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/util/TokenUtil.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/service/NoticeService.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

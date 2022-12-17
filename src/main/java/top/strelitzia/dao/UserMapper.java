@@ -2,7 +2,7 @@ package top.strelitzia.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.strelitzia.models.UserInfo;
+import top.strelitzia.model.UserInfo;
 
 @Repository
 public interface UserMapper {

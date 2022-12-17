@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.strelitzia.dao.QQMapper">
-  <insert id ="upsertQqLogin" resultType="java.lang.Integer">
+  <insert id ="upsertQqLogin" parameterType="top.strelitzia.model.QQ">
     insert into t_qq (qq, frame, type, login_time, bot_id) values(#{qq}, #{frame}, #{type}, #{loginTime}, #{botId}) 
-    on dunplicate key update
+    on duplicate key update
     frame = #{frame},
     type = #{type},
     login_time = #{loginTime},

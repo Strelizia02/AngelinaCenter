@@ -3,11 +3,8 @@ package top.strelitzia.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.strelitzia.annotation.Token;
-import top.strelitzia.models.*;
+import top.strelitzia.model.*;
 import top.strelitzia.service.DataService;
-import top.strelitzia.service.NoticeService;
-import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 
 import java.util.List;
@@ -32,7 +29,7 @@ public class BotController {
      */
     @PostMapping("heartBeats")
     public JsonResult<String> heartBeats(@RequestBody Bot bot) {
-      //TODO 心跳接口，要传过来Bot的id，所有账号的在线情况，返回Botid（第一次心跳需要生成id）
+        log.info(bot.toString());
         return JsonResult.success(dataService.heartBeats(bot));
     }
   
@@ -41,7 +38,7 @@ public class BotController {
      * @return true/false
      */
     @PostMapping("pushData")
-    public JsonResult<Boolean> pushData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<Function> list) {
-        return JsonResult.success(dataService.pushData(token, list));
+    public JsonResult<Boolean> pushData(@RequestBody PushData list) {
+        return JsonResult.success(dataService.pushData(list));
     }
 }

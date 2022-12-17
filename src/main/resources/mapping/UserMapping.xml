@@ -11,7 +11,7 @@
       <result column="count" property="count" jdbcType="INTEGER"/>
     </resultMap>
   
-  <select id ="selectUserInfo" resultType="UserMap">
+  <select id ="selectUserInfo" resultMap="UserMap">
     select id, pwd, is_admin, name
     from t_user
     where id = #{id}
@@ -40,13 +40,13 @@
     where id = #{id}
   </select>
   
-  <update id ="updateName" resultType="java.lang.Integer">
+  <update id ="updateName">
     update t_user set
     name = #{name}
     where id = #{id}
   </update>
   
-  <select id ="selectUserInfoByName" resultType="UserMap">
+  <select id ="selectUserInfoByName" resultMap="UserMap">
     select id, pwd, is_admin, name
     from t_user
     where name = #{name}
@@ -64,21 +64,21 @@
     where b.id = #{botId}
   </select>
   
-  <update id ="updateTokenByBotId" resultType="java.lang.Integer">
+  <update id ="updateTokenByBotId">
     update t_user u
      left join t_bot b on u.id = b.user_id
     set token = #{num}
     where b.id = #{botId}
   </update>
   
-  <update id ="updateUseTokenByBotId" resultType="java.lang.Integer">
+  <update id ="updateUseTokenByBotId">
     update t_user u
      left join t_bot b on u.id = b.user_id
     set use_token = #{num}
     where b.id = #{botId}
   </update>
   
-  <update id ="updateCountByBotId" resultType="java.lang.Integer">
+  <update id ="updateCountByBotId">
     update t_user u
      left join t_bot b on u.id = b.user_id
     set count = #{num}

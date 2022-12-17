@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.strelitzia.annotation.Token;
-import top.strelitzia.models.*;
+import top.strelitzia.model.*;
 import top.strelitzia.service.NoticeService;
 import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;

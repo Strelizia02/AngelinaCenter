@@ -2,7 +2,7 @@ package top.strelitzia.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.strelitzia.models.Function;
+import top.strelitzia.model.Function;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public interface FuncMapper {
 
     //更新功能被调用的次数
-    Integer updateFuncCount(@Param("id") Integer id , Function list);
+    Integer upsertFuncCount(@Param("id") String id, @Param("name") String name, @Param("count") Long count);
 
     //查询所有功能的被调用次数
     List<Function> selectFunctionCount();

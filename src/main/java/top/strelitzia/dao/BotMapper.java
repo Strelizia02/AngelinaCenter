@@ -2,8 +2,8 @@ package top.strelitzia.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.strelitzia.models.Bot;
-import top.strelitzia.models.BotData;
+import top.strelitzia.model.Bot;
+import top.strelitzia.model.BotData;
 
 import java.util.List;
 
@@ -20,4 +20,8 @@ public interface BotMapper {
 
     //查询所有qq的在线离线总数
     BotData selectCountBot();
+
+    Integer upsertBot(@Param("id") String id, @Param("name") String name);
+
+    Integer updateBotInfo(Bot bot);
 }

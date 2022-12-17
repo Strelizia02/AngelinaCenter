@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import top.strelitzia.dao.UserMapper;
-import top.strelitzia.models.*;
+import top.strelitzia.model.*;
 import top.strelitzia.util.RSAUtil;
 import top.strelitzia.util.TokenUtil;
 

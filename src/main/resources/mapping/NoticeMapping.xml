@@ -4,10 +4,10 @@
   <resultMap id="NoticeMap" type="top.strelitzia.model.Notice">
     <id column="id" property="id"/>
     <result column="text" property="text" jdbcType="VARCHAR"/>
-    <result column="img" property=""" jdbcType="BIGINT"/>
+    <result column="img" property="img" jdbcType="VARCHAR"/>
   </resultMap>
 
-  <insert id ="insertNotice" resultType="java.lang.Integer">
+  <insert id ="insertNotice">
     insert into t_notice (text, img) values(#{text}, #{path}) 
   </insert>
 
@@ -15,7 +15,7 @@
     SELECT id, text, img from t_notice 
   </select>
 
-  <update id="updateNotice" resultType="java.lang.Integer">
+  <update id="updateNotice">
     update t_notice set
       text = #{text}, 
       img = #{path}
@@ -23,10 +23,10 @@
   </update>
 
   <select id="selectNoticeById" resultMap="NoticeMap">
-    SELECT id, text, img from t_notice where id = #{id}
+    SELECT id, text, img from t_notice where id = #{noticeId}
   </select>
   
-  <delete id="selectNoticeById" resultType="java.lang.Integer">
+  <delete id="deleteNotice">
     delete from t_notice where id = #{id}
   </delete>
 </mapper>

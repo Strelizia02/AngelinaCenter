@@ -8,9 +8,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import top.strelitzia.dao.UserMapper;
-import top.strelitzia.models.Info;
-import top.strelitzia.models.OpenAiModel;
-import top.strelitzia.models.UserInfo;
+import top.strelitzia.model.Info;
+import top.strelitzia.model.OpenAiModel;
+import top.strelitzia.model.UserInfo;
 import top.strelitzia.util.TokenUtil;
 
 import java.util.HashMap;

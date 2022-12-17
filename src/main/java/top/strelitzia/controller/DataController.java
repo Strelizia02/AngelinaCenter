@@ -4,10 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
-import top.strelitzia.models.*;
+import top.strelitzia.model.*;
 import top.strelitzia.service.DataService;
-import top.strelitzia.service.NoticeService;
-import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 
 import java.util.List;

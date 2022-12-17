@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import top.strelitzia.annotation.Token;
-import top.strelitzia.models.UserInfo;
+import top.strelitzia.model.UserInfo;
 import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 

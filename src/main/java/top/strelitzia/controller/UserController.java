@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
-import top.strelitzia.models.NewPwd;
-import top.strelitzia.models.UserInfo;
+import top.strelitzia.model.NewPwd;
+import top.strelitzia.model.UserInfo;
 import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 

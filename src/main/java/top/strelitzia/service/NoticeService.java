@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import top.strelitzia.dao.NoticeMapper;
 import top.strelitzia.dao.UserMapper;
-import top.strelitzia.models.Info;
-import top.strelitzia.models.Notice;
-import top.strelitzia.models.UserInfo;
+import top.strelitzia.model.Info;
+import top.strelitzia.model.Notice;
+import top.strelitzia.model.UserInfo;
 import top.strelitzia.util.TokenUtil;
 
 import java.io.File;

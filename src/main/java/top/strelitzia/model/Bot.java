@@ -1,4 +1,4 @@
-package top.strelitzia.models;
+package top.strelitzia.model;
 
 import lombok.Data;
 
@@ -15,9 +15,7 @@ public class Bot {
     private String name;
     
     private Long ram;
-    
-    private Long cpu;
-    
+
     private Long send;
 
     private Long receive;

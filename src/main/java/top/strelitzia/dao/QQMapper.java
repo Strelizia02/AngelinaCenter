@@ -1,8 +1,7 @@
 package top.strelitzia.dao;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.strelitzia.models.QQ;
+import top.strelitzia.model.QQ;
 
 @Repository
 public interface QQMapper {

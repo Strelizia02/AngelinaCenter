@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import top.strelitzia.config.properties.AngelinaDataSourceProperties;
 
@@ -46,6 +47,8 @@ public class AngelinaDataSourceConfig {
     public SqlSessionFactory angelinaSqlSessionFactory(
             @Qualifier("angelinaDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources("classpath:mapping/*.xml"));
         bean.setDataSource(dataSource);
         return bean.getObject();
     }

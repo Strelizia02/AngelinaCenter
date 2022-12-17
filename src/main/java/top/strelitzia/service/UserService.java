@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import top.strelitzia.dao.BotMapper;
 import top.strelitzia.dao.UserMapper;
-import top.strelitzia.models.NewPwd;
-import top.strelitzia.models.UserInfo;
+import top.strelitzia.model.NewPwd;
+import top.strelitzia.model.UserInfo;
 import top.strelitzia.util.RSAUtil;
 import top.strelitzia.util.TokenUtil;
 

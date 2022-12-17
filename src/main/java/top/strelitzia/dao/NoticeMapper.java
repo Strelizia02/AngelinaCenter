@@ -2,7 +2,7 @@ package top.strelitzia.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import top.strelitzia.models.Notice;
+import top.strelitzia.model.Notice;
 
 import java.util.List;
 

@@ -1,9 +1,6 @@
-package top.strelitzia.models;
+package top.strelitzia.model;
 
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 更新密码用

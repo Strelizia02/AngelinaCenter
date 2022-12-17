@@ -1,4 +1,4 @@
-package top.strelitzia.models;
+package top.strelitzia.model;
 
 import lombok.Data;
 

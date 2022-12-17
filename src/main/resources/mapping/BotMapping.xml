@@ -10,7 +10,7 @@
         <result column="receive" property="receive" jdbcType="BIGINT"/>
         <result column="qq_count" property="qqCount" jdbcType="BIGINT"/>
         <result column="group_count" property="groupCount" jdbcType="BIGINT"/>
-        <collection property="QQ" ofType="top.strelitzia.models.QQ">
+        <collection property="QQ" ofType="top.strelitzia.model.QQ" javaType="java.util.List">
             <result column="qq" property="qq" jdbcType="VARCHAR"/>
             <result column="frame" property="frame" jdbcType="VARCHAR"/>
             <result column="type" property="type" jdbcType="VARCHAR"/>
@@ -27,7 +27,7 @@
         SELECT bot_id from t_qq where qq = #{qq}
     </select>
 
-    <update id="updateUser" resultType="java.lang.String">
+    <update id="updateUser">
         update t_bot set
             user_id = #[user_id}
         where id = #{bot_id}
@@ -43,7 +43,23 @@
     </select>
     
     <select id="selectCountBot" resultMap="BotDataMap">
-        select sum(if(login_time - unix_timestamp(NOW()), 1, 0) < 300000) as online, sum(if(login_time - unix_timestamp(NOW()), 1, 0) >= 300000) as offline
+        select sum(if(login_time - unix_timestamp(NOW()), 1, 0) &lt; 300000) as online, sum(if(login_time - unix_timestamp(NOW()), 1, 0) &gt;= 300000) as offline
         from t_qq
     </select>
+
+    <select id="upsertBot">
+        insert into t_bot (id, bot_name) values (#{id}, #{name})
+            on duplicate key update
+        bot_name = #{name}
+    </select>
+
+    <update id="updateBotInfo">
+        insert into t_bot (id, ram, qq_count, group_count, send, receive) values (#{id}, #{ram}, #{qqCount}, #{groupCount}, #{send}, #{receive})
+            on duplicate key update
+         ram = #{ram},
+         group_count = #{qqCount},
+         group_count = #{groupCount},
+         send = send + #{send},
+         receive = receive + #{receive}
+    </update>
 </mapper>

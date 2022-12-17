@@ -7,11 +7,10 @@
         <result column="count" property="count" jdbcType="BIGINT"/>
     </resultMap>
 
-    <update id="updateFuncCount" resultType="java.lang.Integer">
-        update t_function
-        set 
+    <update id="upsertFuncCount">
+        insert into t_function (bot_id, name, count) values (#{id}, #{name}, #{count})
+        on duplicate key update
         count = count + #{count}
-        where name = #{name} AND bot_id = #{botId}
     </update>
     
     <select id="selectFunctionCount" resultMap="FunctionMap">

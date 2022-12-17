@@ -3,6 +3,7 @@ package top.strelitzia.controller;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.strelitzia.annotation.Token;
@@ -11,6 +12,9 @@ import top.strelitzia.service.NoticeService;
 import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -23,9 +27,6 @@ import java.util.List;
 @RestController
 @Slf4j
 public class NoticeController {
-
-    @Autowired
-    private UserService userService;
     
     @Autowired
     private NoticeService noticeService;
@@ -38,14 +39,23 @@ public class NoticeController {
     public JsonResult<List<Notice>> getNotice() {
         return JsonResult.success(noticeService.getNotice());
     }
-  
+
     /**
-     * 编辑某条公告信息
-     * @return 公告信息
+     * 获取公告的图片
      */
+    @GetMapping(value = "getNoticeImg", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getNoticeImg(@RequestParam Integer id) {
+        return noticeService.getNoticeImg(id);
+    }
+
+
+        /**
+         * 编辑某条公告信息
+         * @return 公告信息
+         */
     @Token
     @PostMapping("editNotice")
-    public JsonResult<Info> editNotice(@RequestHeader(value = "Authorization", required = false) String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "id") @RequestParam Integer id, @ApiParam(value = "text") @RequestParam String text) {
+    public JsonResult<Info> editNotice(@RequestHeader(value = "Authorization", required = false) String token, @ApiParam(value = "img") @RequestParam(required = false) MultipartFile img, @ApiParam(value = "id") @RequestParam Integer id, @ApiParam(value = "text") @RequestParam String text) {
         return JsonResult.success(noticeService.editNotice(token, id, text, img));
     }
 

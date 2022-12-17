@@ -1,6 +1,9 @@
 package top.strelitzia.service;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import top.strelitzia.dao.BotMapper;
@@ -25,6 +28,9 @@ public class UserService {
     @Autowired
     private BotMapper botMapper;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     public UserInfo getUserProperty(String token) {
         Integer id = tokenUtil.getTokenId(token);
         return userMapper.selectUserProperty(id);
@@ -38,9 +44,13 @@ public class UserService {
     public Boolean addUserBot(String token, String qq) {
         Integer id = tokenUtil.getTokenId(token);
         String botId = botMapper.selectBotIdByQq(qq);
-        if (LoginService.captchaMap.containsKey(id) && LoginService.captchaMap.get(id).getIsSend()) {
-            botMapper.updateUser(id, botId);
-            return true;
+        if (redisTemplate.hasKey(qq)) {
+            JSONObject obj = new JSONObject(redisTemplate.opsForValue().get(qq));
+            if (obj.getBoolean("isSend")) {
+                //有没有验证过
+                botMapper.updateUser(id, botId);
+                return true;
+            }
         }
         return false;
     }

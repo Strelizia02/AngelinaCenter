@@ -29,7 +29,7 @@ public class DataController {
      * @return 全部信息
      */
     @Token
-    @PostMapping("getBotList")
+    @GetMapping("getBotList")
     public JsonResult<List<Bot>> getBotList(@RequestHeader(value = "Authorization", required = false) String token) {
         //TODO 数据库里记录的是每个账号的最后一次心跳时间，超过五分钟没有心跳就算离线
         return JsonResult.success(dataService.getBotList(token));
@@ -49,7 +49,7 @@ public class DataController {
      * 获取全部功能的列表
      * @return 每个功能的详细调用次数
      */
-    @PostMapping("getFuncList")
+    @GetMapping("getFuncList")
     public JsonResult<List<Function>> getFuncList() {
         return JsonResult.success(dataService.getFuncList());
     }
@@ -59,7 +59,7 @@ public class DataController {
      * @return 每个功能的详细调用次数
      */
     @Token
-    @PostMapping("getSomeOneFuncList")
+    @GetMapping("getSomeOneFuncList")
     public JsonResult<List<Function>> getSomeOneFuncList(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(dataService.getSomeOneFuncList(token));
     }

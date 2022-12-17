@@ -12,21 +12,25 @@
   </insert>
 
   <select id="selectAllNotice" resultMap="NoticeMap">
-    SELECT id, text, img from t_notice 
+    SELECT id, text from t_notice
   </select>
 
   <update id="updateNotice">
     update t_notice set
       text = #{text}, 
       img = #{path}
-    where id = #{id}
+    where id = #{noticeId}
   </update>
 
   <select id="selectNoticeById" resultMap="NoticeMap">
-    SELECT id, text, img from t_notice where id = #{noticeId}
+    SELECT id, text from t_notice where id = #{noticeId}
+  </select>
+
+  <select id="selectNoticeImgById" resultType="java.lang.String">
+    SELECT img from t_notice where id = #{noticeId}
   </select>
   
   <delete id="deleteNotice">
-    delete from t_notice where id = #{id}
+    delete from t_notice where id = #{noticeId}
   </delete>
 </mapper>

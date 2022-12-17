@@ -62,8 +62,8 @@ public class LoginController {
      * @param captchaReceive 登录信息
      * @return 验证码字符串
      */
-    @GetMapping("reciveCaptcha")
-    public JsonResult<Boolean> reciveCaptcha(@RequestBody CaptchaReceive captchaReceive) {
+    @PostMapping("receiveCaptcha")
+    public JsonResult<Boolean> receiveCaptcha(@RequestBody CaptchaReceive captchaReceive) {
         return JsonResult.success(loginService.receivedCaptcha(captchaReceive));
     }
 

@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 @SuppressWarnings({"unused"})
 public class TokenAspect {
-
-    public static final String TOKEN_KEY = "Authorization";
-
     @Autowired
     private StringRedisTemplate redisTemplate;
 
@@ -32,7 +29,7 @@ public class TokenAspect {
 
     @Around("annotationPointcut()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        String token = request.getHeader(TOKEN_KEY);
+        String token = request.getHeader("Authorization");
         String mes;
         if (null == token){
             mes = "未检测到token，请携带token后再次请求";

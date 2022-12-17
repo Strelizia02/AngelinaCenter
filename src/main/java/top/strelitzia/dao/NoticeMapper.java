@@ -21,6 +21,9 @@ public interface NoticeMapper {
     //查询一条公告
     Notice selectNoticeById(@Param("noticeId") Integer noticeId);
 
+    //查询一条公告
+    String selectNoticeImgById(@Param("noticeId") Integer noticeId);
+
     //删除一条公告
     Integer deleteNotice(@Param("noticeId") Integer noticeId);
 }

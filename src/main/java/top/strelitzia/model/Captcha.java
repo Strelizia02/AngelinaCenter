@@ -13,8 +13,6 @@ public class Captcha {
 
     private Boolean isSend;
 
-    private Long timestamp;
-
     public Captcha(String id, String captcha) {
         this.captcha = captcha;
         this.id = id;

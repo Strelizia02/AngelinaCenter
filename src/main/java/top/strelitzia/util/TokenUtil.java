@@ -18,15 +18,20 @@ public class TokenUtil {
 
     public String createToken(Integer id) {
       JSONObject obj = new JSONObject();
-      obj.append("id", id);
-      obj.append("sat", new Random().nextInt(9999));
+      obj.put("id", id);
+      obj.put("sat", new Random().nextInt(9999));
       String token = Base64.encodeBase64String(obj.toString().getBytes());
       redisTemplate.opsForValue().set(token, String.valueOf(id), 30, TimeUnit.MINUTES);
       return token;
     }
 
     public Integer getTokenId(String token) {
-      JSONObject obj = new JSONObject(Base64.decodeBase64(token));
-      return obj.getInt("id");
+        try {
+            JSONObject obj = new JSONObject(new String(Base64.decodeBase64(token)));
+            return obj.getInt("id");
+        } catch (IllegalArgumentException | NullPointerException e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

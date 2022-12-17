@@ -3,14 +3,13 @@
 <mapper namespace="top.strelitzia.dao.BotMapper">
     <resultMap id="BotMap" type="top.strelitzia.model.Bot">
         <result column="id" property="id" jdbcType="VARCHAR"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="bot_name" property="name" jdbcType="VARCHAR"/>
         <result column="ram" property="ram" jdbcType="BIGINT"/>
-        <result column="cpu" property="cpu" jdbcType="BIGINT"/>
         <result column="send" property="send" jdbcType="BIGINT"/>
         <result column="receive" property="receive" jdbcType="BIGINT"/>
         <result column="qq_count" property="qqCount" jdbcType="BIGINT"/>
         <result column="group_count" property="groupCount" jdbcType="BIGINT"/>
-        <collection property="QQ" ofType="top.strelitzia.model.QQ" javaType="java.util.List">
+        <collection property="list" ofType="top.strelitzia.model.QQ" javaType="java.util.List">
             <result column="qq" property="qq" jdbcType="VARCHAR"/>
             <result column="frame" property="frame" jdbcType="VARCHAR"/>
             <result column="type" property="type" jdbcType="VARCHAR"/>
@@ -34,16 +33,16 @@
     </update>
     
     <select id="selectBotById" resultMap="BotMap">
-        SELECT b.id, b.name, ram, cpu, send, receive, qq_count, group_count, q.qq, q.frame, q.type, q.login_time 
+        SELECT b.id, b.bot_name, ram, send, receive, qq_count, group_count, q.qq, q.frame, q.type, q.login_time
         from 
             t_user u 
             left join t_bot b on u.id = b.user_id
-            left join t_qq q on b.id.id = q.bot_id
+            left join t_qq q on b.id = q.bot_id
         where u.id = #{id}
     </select>
     
     <select id="selectCountBot" resultMap="BotDataMap">
-        select sum(if(login_time - unix_timestamp(NOW()), 1, 0) &lt; 300000) as online, sum(if(login_time - unix_timestamp(NOW()), 1, 0) &gt;= 300000) as offline
+        select sum(if(unix_timestamp(NOW()) * 1000 - login_time &lt; 300000, 1, 0)) as online, sum(if(unix_timestamp(NOW()) * 1000 - login_time &gt;= 300000, 1, 0)) as offline
         from t_qq
     </select>
 
@@ -57,7 +56,7 @@
         insert into t_bot (id, ram, qq_count, group_count, send, receive) values (#{id}, #{ram}, #{qqCount}, #{groupCount}, #{send}, #{receive})
             on duplicate key update
          ram = #{ram},
-         group_count = #{qqCount},
+         qq_count = #{qqCount},
          group_count = #{groupCount},
          send = send + #{send},
          receive = receive + #{receive}

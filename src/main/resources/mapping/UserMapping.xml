@@ -12,7 +12,7 @@
     </resultMap>
   
   <select id ="selectUserInfo" resultMap="UserMap">
-    select id, pwd, is_admin, name
+    select id, is_admin, name
     from t_user
     where id = #{id}
   </select>
@@ -34,7 +34,7 @@
     where name = #{name}
   </select>
   
-  <select id ="selectPwdById" resultType="java.lang.Integer">
+  <select id ="selectPwdById" resultType="java.lang.String">
     select pwd
     from t_user 
     where id = #{id}

@@ -14,13 +14,13 @@
     </update>
     
     <select id="selectFunctionCount" resultMap="FunctionMap">
-        SELECT name, count from t_function group by name
+        SELECT name, sum(count) as count from t_function group by name
     </select>
 
     <select id="selectFunctionCountById" resultMap="FunctionMap">
-        SELECT name, sum(count) 
+        SELECT name, sum(count) as count
         from t_function f left join t_bot b on b.id = f.bot_id 
-        group by name 
         where user_id = #{id}
+        group by name
     </select>
 </mapper>

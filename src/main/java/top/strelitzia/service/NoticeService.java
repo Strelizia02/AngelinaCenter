@@ -10,7 +10,8 @@ import top.strelitzia.model.Notice;
 import top.strelitzia.model.UserInfo;
 import top.strelitzia.util.TokenUtil;
 
-import java.io.File;
+import javax.imageio.ImageIO;
+import java.io.*;
 import java.util.List;
 
 @Service
@@ -31,6 +32,18 @@ public class NoticeService {
     public List<Notice> getNotice() {
         return noticeMapper.selectAllNotice();
     }
+
+    public byte[] getNoticeImg(Integer noticeId){
+        String path = noticeMapper.selectNoticeImgById(noticeId);
+        try (FileInputStream fs = new FileInputStream(path)){
+            byte[] b = new byte[fs.available()];
+            //将字节流中的数据传递给字节数组
+            fs.read(b);
+            return b;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
   
     public Info editNotice(String token, Integer noticeId, String text, MultipartFile img) {
         Integer id = tokenUtil.getTokenId(token);
@@ -39,6 +52,8 @@ public class NoticeService {
         if (userInfo.getIsAdmin() == 1) {
             String path = null;
             if (img != null) {
+                String old = noticeMapper.selectNoticeImgById(noticeId);
+                new File(old).deleteOnExit();
                 path = fileService.saveFile(img);
             }
             noticeMapper.updateNotice(noticeId, text, path);
@@ -69,8 +84,10 @@ public class NoticeService {
         UserInfo userInfo = userMapper.selectUserInfo(id);
 
         if (userInfo.getIsAdmin() == 1) {
-            Notice notice = noticeMapper.selectNoticeById(noticeId);
-            new File(notice.getImg()).deleteOnExit();
+            String img = noticeMapper.selectNoticeImgById(noticeId);
+            if (img != null) {
+                new File(img).deleteOnExit();
+            }
             noticeMapper.deleteNotice(noticeId);
             return new Info(true, "删除成功");
         } else {

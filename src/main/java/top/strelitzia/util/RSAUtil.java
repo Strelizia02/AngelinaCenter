@@ -6,7 +6,10 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.Cipher;
+import java.math.BigInteger;
+import java.net.URLEncoder;
 import java.security.*;
+import java.security.interfaces.RSAPublicKey;
 
 
 @Component
@@ -62,6 +65,24 @@ public class RSAUtil {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    /**
+     * 公钥加密
+     */
+    public String encrypt(String plaintext) throws Exception {
+        String encode = URLEncoder.encode(plaintext, "utf-8");
+        RSAPublicKey rsaPublicKey = (RSAPublicKey) keyPair.getPublic();
+        //获取公钥指数
+        BigInteger e = rsaPublicKey.getPublicExponent();
+        //获取公钥系数
+        BigInteger n = rsaPublicKey.getModulus();
+        //获取明文字节数组
+        BigInteger m = new BigInteger(encode.getBytes());
+        //进行明文加密
+        BigInteger res = m.modPow(e, n);
+        return new String(Base64.encodeBase64(res.toByteArray()));
     }
 
     /**

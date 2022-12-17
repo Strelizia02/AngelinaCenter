@@ -7,9 +7,6 @@ import lombok.Data;
  */
 @Data
 public class CaptchaReceive {
-
-    private Integer id;
-
     private String qq;
 
     private String captcha;

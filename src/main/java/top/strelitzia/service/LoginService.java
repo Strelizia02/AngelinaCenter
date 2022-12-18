@@ -128,6 +128,7 @@ public class LoginService {
         userInfo.setPwd(DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(userInfo.getPwd()).getBytes()));
         userInfo.setPwd(null);
         userMapper.insertUserInfo(userInfo);
+        id = userMapper.selectIdByName(userInfo.getName());
         loginInfo.setUserInfo(userMapper.selectUserInfoByName(userInfo.getName()));
         loginInfo.setOk(true);
         loginInfo.setToken(tokenUtil.createToken(id));

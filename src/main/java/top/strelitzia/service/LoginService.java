@@ -126,7 +126,6 @@ public class LoginService {
             return loginInfo;
         }
         userInfo.setPwd(DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(userInfo.getPwd()).getBytes()));
-        userInfo.setPwd(null);
         userMapper.insertUserInfo(userInfo);
         id = userMapper.selectIdByName(userInfo.getName());
         loginInfo.setUserInfo(userMapper.selectUserInfoByName(userInfo.getName()));

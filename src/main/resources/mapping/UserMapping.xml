@@ -53,7 +53,7 @@
   </update>
 
   <select id ="selectUserInfoByName" resultMap="UserMap">
-    select id, pwd, is_admin, name
+    select id, is_admin, name
     from t_user
     where name = #{name}
   </select>

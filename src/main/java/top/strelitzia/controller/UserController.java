@@ -71,8 +71,8 @@ public class UserController {
      */
     @Token
     @GetMapping("removeUserBot")
-    public JsonResult<Boolean> removeUserBot(@RequestParam String botId) {
-        return JsonResult.success(userService.removeUserBot(botId));
+    public JsonResult<Boolean> removeUserBot(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String botId) {
+        return JsonResult.success(userService.removeUserBot(token, botId));
     }
     
     /**

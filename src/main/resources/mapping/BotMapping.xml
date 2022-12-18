@@ -28,8 +28,8 @@
 
     <update id="updateUser">
         update t_bot set
-            user_id = #[user_id}
-        where id = #{bot_id}
+            user_id = #{user_id}
+        where id = #{id}
     </update>
     
     <select id="selectBotById" resultMap="BotMap">
@@ -39,6 +39,13 @@
             left join t_bot b on u.id = b.user_id
             left join t_qq q on b.id = q.bot_id
         where u.id = #{id}
+    </select>
+
+    <select id="selectUserIdByBotId" resultType="java.lang.Integer">
+        SELECT user_id
+        from
+            t_bot
+        where id = #{botId}
     </select>
     
     <select id="selectCountBot" resultMap="BotDataMap">

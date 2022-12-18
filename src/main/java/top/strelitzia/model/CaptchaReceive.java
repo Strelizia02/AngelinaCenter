@@ -10,4 +10,6 @@ public class CaptchaReceive {
     private String qq;
 
     private String captcha;
+
+    private String botId;
 }

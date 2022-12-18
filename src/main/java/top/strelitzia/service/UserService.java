@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import top.strelitzia.dao.BotMapper;
 import top.strelitzia.dao.UserMapper;
+import top.strelitzia.model.Bot;
 import top.strelitzia.model.NewPwd;
 import top.strelitzia.model.UserInfo;
 import top.strelitzia.util.RSAUtil;
 import top.strelitzia.util.TokenUtil;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -49,15 +52,21 @@ public class UserService {
             if (obj.getBoolean("isSend")) {
                 //有没有验证过
                 botMapper.updateUser(id, botId);
+                redisTemplate.delete(qq);
                 return true;
             }
         }
         return false;
     }
 
-    public Boolean removeUserBot(String botId) {
-        botMapper.updateUser(null, botId);
-        return true;
+    public Boolean removeUserBot(String token, String botId) {
+        Integer id = tokenUtil.getTokenId(token);
+        Integer user = botMapper.selectUserIdByBotId(botId);
+        if (user.equals(id)) {
+            botMapper.updateUser(null, botId);
+            return true;
+        }
+        return false;
     }
     
     public Boolean editUserName(String token, String name) {

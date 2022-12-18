@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import top.strelitzia.dao.BotMapper;
 import top.strelitzia.dao.UserMapper;
 import top.strelitzia.model.*;
 import top.strelitzia.util.RSAUtil;
@@ -31,11 +32,13 @@ public class LoginService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private BotMapper botMapper;
+
     public LoginInfo pwdLogin(UserInfo userInfo) {
         //先从登录信息里提取id
         String name = userInfo.getName();
         Integer id = userMapper.selectIdByName(name);
-
 //        String pwd = userInfo.getPwd();
         LoginInfo loginInfo = new LoginInfo();
 
@@ -47,8 +50,6 @@ public class LoginService {
                 loginInfo.setOk(true);
                 loginInfo.setToken(tokenUtil.createToken(id));
                 loginInfo.setUserInfo(userMapper.selectUserInfo(id));
-            } else {
-                loginInfo.setOk(false);
             }
         } else {
             loginInfo.setOk(false);
@@ -63,6 +64,11 @@ public class LoginService {
         //先通过qq查到要登录哪个id
         LoginInfo loginInfo = new LoginInfo();
         Integer id = userMapper.selectIdByQq(qq);
+        if (id == null) {
+            loginInfo.setOk(false);
+            loginInfo.setToken("当前Bot未绑定账号，请先注册账号，在用户中心中绑定Bot");
+            return loginInfo;
+        }
         if (redisTemplate.hasKey(qq)) {
             JSONObject obj = new JSONObject(redisTemplate.opsForValue().get(qq));
             if (obj.getBoolean("isSend")) {
@@ -82,13 +88,15 @@ public class LoginService {
      * 接受验证码方法
      */
     public Boolean receivedCaptcha(CaptchaReceive captchaReceive) {
-        //对比qq，验证码是否一致
+        //对比qq，botId,验证码是否一致
         if (redisTemplate.hasKey(captchaReceive.getQq())) {
-            JSONObject obj = new JSONObject(redisTemplate.opsForValue().get(captchaReceive.getQq()));
-            if (obj.getString("captcha").equals(captchaReceive.getCaptcha())) {
-                obj.put("isSend", true);
-                redisTemplate.opsForValue().set(captchaReceive.getQq(), obj.toString());
-                return true;
+            if (botMapper.selectBotIdByQq(captchaReceive.getQq()).equals(captchaReceive.getBotId())) {
+                JSONObject obj = new JSONObject(redisTemplate.opsForValue().get(captchaReceive.getQq()));
+                if (obj.getString("captcha").equals(captchaReceive.getCaptcha())) {
+                    obj.put("isSend", true);
+                    redisTemplate.opsForValue().set(captchaReceive.getQq(), obj.toString());
+                    return true;
+                }
             }
         }
         return false;

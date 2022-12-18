@@ -18,6 +18,9 @@ public interface BotMapper {
     //根据userid查询下属Bot
     List<Bot> selectBotById(@Param("id") Integer id);
 
+    //根据userid查询下属Bot
+    Integer selectUserIdByBotId(@Param("botId") String botId);
+
     //查询所有qq的在线离线总数
     BotData selectCountBot();
 

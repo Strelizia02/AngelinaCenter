@@ -73,8 +73,8 @@ public class UserService {
     
     public Boolean editUserPwd(String token, NewPwd pwd) {
         Integer id = tokenUtil.getTokenId(token);
-        if (userMapper.selectPwdById(id).equals(pwd.getOldPwd())) {
-            userMapper.updateName(id, DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(pwd.getNewPwd()).getBytes()));
+        if (userMapper.selectPwdById(id).equals(DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(pwd.getOldPwd()).getBytes()))) {
+            userMapper.updatePwd(id, DigestUtils.md5DigestAsHex(rsaUtil.decryptWithPrivate(pwd.getNewPwd()).getBytes()));
             return true;
         } else {
             return false;

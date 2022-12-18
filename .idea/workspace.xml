@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="user和openai还没测">
+    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="aaa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/UserMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/UserMapping.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +56,6 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/MyProject/AngelinaCenter/AngelinaCenter/src/main/resources/mapping&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
@@ -117,7 +118,9 @@
       <workItem from="1671022492845" duration="7787000" />
       <workItem from="1671111396588" duration="6768000" />
       <workItem from="1671190747182" duration="9832000" />
-      <workItem from="1671255732968" duration="21118000" />
+      <workItem from="1671255732968" duration="21304000" />
+      <workItem from="1671293588821" duration="22000" />
+      <workItem from="1671333348334" duration="3773000" />
     </task>
     <task id="LOCAL-00001" summary="随便改改">
       <created>1670942598797</created>
@@ -182,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671284659615</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="aaa">
+      <created>1671292798595</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671292798595</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +218,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="随便改改" />
     <MESSAGE value="user和openai还没测" />
-    <option name="LAST_COMMIT_MESSAGE" value="user和openai还没测" />
+    <MESSAGE value="aaa" />
+    <option name="LAST_COMMIT_MESSAGE" value="aaa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -217,6 +228,21 @@
           <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/service/NoticeService.java</url>
           <line>91</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/util/RSAUtil.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/service/LoginService.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

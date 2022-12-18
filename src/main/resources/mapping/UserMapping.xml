@@ -45,7 +45,13 @@
     name = #{name}
     where id = #{id}
   </update>
-  
+
+  <update id ="updatePwd">
+    update t_user set
+      pwd = #{pwd}
+    where id = #{id}
+  </update>
+
   <select id ="selectUserInfoByName" resultMap="UserMap">
     select id, pwd, is_admin, name
     from t_user

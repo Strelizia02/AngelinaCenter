@@ -25,6 +25,9 @@ public interface UserMapper {
     //更新用户名
     Integer updateName(@Param("id") Integer id, @Param("name") String name);
 
+    //更新用户名
+    Integer updatePwd(@Param("id") Integer id, @Param("pwd") String pwd);
+
     //根据名字查用户基本信息
     UserInfo selectUserInfoByName(@Param("name") String name);
 

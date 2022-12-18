@@ -41,7 +41,8 @@ public class NoticeService {
             fs.read(b);
             return b;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
   

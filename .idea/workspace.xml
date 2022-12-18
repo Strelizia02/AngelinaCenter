@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="aaa">
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/LoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/config/RabbitMQConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/AngelinaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/AngelinaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/NoticeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/NoticeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,10 +78,10 @@
       <recent name="E:\MyProject\AngelinaCenter\AngelinaCenter\src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="top.strelitzia.config" />
       <recent name="top.strelitzia.model" />
       <recent name="top.strelitzia.service" />
       <recent name="top.strelitzia.controller" />
-      <recent name="top.strelitzia.config" />
       <recent name="top.strelitzia" />
     </key>
   </component>
@@ -118,7 +123,9 @@
       <workItem from="1671255732968" duration="21304000" />
       <workItem from="1671293588821" duration="22000" />
       <workItem from="1671333348334" duration="8511000" />
-      <workItem from="1671347673464" duration="376000" />
+      <workItem from="1671347673464" duration="1345000" />
+      <workItem from="1671368114592" duration="2400000" />
+      <workItem from="1671376964524" duration="60000" />
     </task>
     <task id="LOCAL-00001" summary="随便改改">
       <created>1670942598797</created>
@@ -211,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671347757905</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="aaa">
+      <created>1671348341251</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671348341251</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,7 +259,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/service/NoticeService.java</url>
-          <line>91</line>
+          <line>92</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

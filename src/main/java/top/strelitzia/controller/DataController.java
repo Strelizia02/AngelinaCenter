@@ -1,6 +1,7 @@
 package top.strelitzia.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
@@ -8,6 +9,7 @@ import top.strelitzia.model.*;
 import top.strelitzia.service.DataService;
 import top.strelitzia.vo.JsonResult;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -23,6 +25,9 @@ public class DataController {
 
     @Autowired
     private DataService dataService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
   
     /**
      * 获取某个账号下所有Bot的列表
@@ -62,5 +67,14 @@ public class DataController {
     @GetMapping("getSomeOneFuncList")
     public JsonResult<List<Function>> getSomeOneFuncList(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(dataService.getSomeOneFuncList(token));
+    }
+
+    @GetMapping("test")
+    public JsonResult<Boolean> test() {
+        //定时检测然后git clone，成功后发送更新消息
+        rabbitTemplate.convertAndSend("DataVersion","", 1);
+        rabbitTemplate.convertAndSend("PoolData","", 1);
+        rabbitTemplate.convertAndSend("NickName","", 1);
+        return JsonResult.success(true);
     }
 }

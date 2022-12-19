@@ -68,14 +68,6 @@ public class DataController {
     public JsonResult<List<Function>> getSomeOneFuncList(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(dataService.getSomeOneFuncList(token));
     }
-
-    @GetMapping("test")
-    public JsonResult<Boolean> test() {
-        //定时检测然后git clone，成功后发送更新消息
-        rabbitTemplate.convertAndSend("DataVersion","", 1);
-        
-        return JsonResult.success(true);
-    }
     
     /**
      * 根据用户传回来的版本号，推送最新的卡池信息
@@ -99,7 +91,34 @@ public class DataController {
      */
     @Token
     @GetMapping("setPoolData")
-    public JsonResult<List<PoolData>> setPoolData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<PoolData> poolData) {
-        return JsonResult.success(dataService.setPoolData(token, poolData);
+    public JsonResult<Boolean> setPoolData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<PoolData> poolData) {
+        return JsonResult.success(dataService.setPoolData(token, poolData));
+    }
+                                  
+    /**
+     * 获取全部昵称数据
+     */
+    @Token
+    @GetMapping("getAllNickName")
+    public JsonResult<List<NickName>> getAllNickName(@RequestHeader(value = "Authorization", required = false) String token) {
+        return JsonResult.success(dataService.getAllNickName());
+    }
+                                  
+    /**
+     * 写入几条新的昵称
+     */
+    @Token
+    @GetMapping("setNickName")
+    public JsonResult<Boolean> setNickName(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<NickName> nickName) {
+        return JsonResult.success(dataService.setNickName(token, poolData);
+    }
+                                  
+    /**
+     * 根据用户版本号获取新的昵称数据
+     */
+    @Token
+    @GetMapping("getNickName")
+    public JsonResult<Boolean> getNickName(@RequestParam String botId, @RequestParam String version) {
+        return JsonResult.success(dataService.getNickName(token, poolData);
     }
 }

@@ -27,4 +27,8 @@ public interface BotMapper {
     Integer upsertBot(@Param("id") String id, @Param("name") String name);
 
     Integer updateBotInfo(Bot bot);
+
+    List<String> selectAllBotId();
+
+    Integer updateBotDownload(@Param("botId") String botId);
 }

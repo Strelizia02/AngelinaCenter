@@ -1,5 +1,7 @@
 package top.strelitzia.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,7 @@ public class UserController {
      */
     @Token
     @GetMapping("getUserProperty")
-    @ApiOperation("查询用户的资产数据，包括token余额，调用次数之类的")
+    @ApiOperation("查询用户的资产数据，包括token余额，调用次数之类的，需要token")
     public JsonResult<UserInfo> getUserProperty(@RequestHeader(value = "Authorization", required = false) String token) {
         //详细资产包括：token余额，token已使用额度，调用次数
         return JsonResult.success(userService.getUserProperty(token));
@@ -42,7 +44,7 @@ public class UserController {
      */
     @Token
     @GetMapping("getUserInfo")
-    @ApiOperation("查询用户的基础信息")
+    @ApiOperation("查询用户的基础信息，需要token")
     public JsonResult<UserInfo> getUserInfo(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(userService.getUserInfo(token));
     }
@@ -54,7 +56,7 @@ public class UserController {
      */
     @Token
     @GetMapping("editUserName")
-    @ApiOperation("修改用户名")
+    @ApiOperation("修改用户名，需要token")
     public JsonResult<Boolean> editUserName(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String name) {
         return JsonResult.success(userService.editUserName(token, name));
     }
@@ -65,7 +67,7 @@ public class UserController {
      */
     @Token
     @GetMapping("addUserBot")
-    @ApiOperation("绑定一个Bot")
+    @ApiOperation("绑定一个Bot，需要token")
     public JsonResult<Boolean> addUserBot(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String qq) {
         return JsonResult.success(userService.addUserBot(token, qq));
     }
@@ -76,7 +78,7 @@ public class UserController {
      */
     @Token
     @GetMapping("removeUserBot")
-    @ApiOperation("解绑一个Bot")
+    @ApiOperation("解绑一个Bot，需要token")
     public JsonResult<Boolean> removeUserBot(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String botId) {
         return JsonResult.success(userService.removeUserBot(token, botId));
     }
@@ -87,7 +89,7 @@ public class UserController {
      */
     @Token
     @PostMapping("editUserPwd")
-    @ApiOperation("修改密码")
+    @ApiOperation("修改密码，需要token")
     public JsonResult<Boolean> editUserPwd(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody NewPwd pwd) {
         return JsonResult.success(userService.editUserPwd(token, pwd));
     }

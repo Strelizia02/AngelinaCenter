@@ -1,11 +1,10 @@
 package top.strelitzia.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.strelitzia.dao.BotMapper;
-import top.strelitzia.dao.FuncMapper;
-import top.strelitzia.dao.QQMapper;
+import top.strelitzia.dao.*;
 import top.strelitzia.model.*;
 import top.strelitzia.util.TokenUtil;
 
@@ -27,6 +26,18 @@ public class DataService {
 
     @Autowired
     private FuncMapper funcMapper;
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private PoolMapper poolMapper;
+
+    @Autowired
+    private NickNameMapper nickNameMapper;
     
     public String heartBeats(Bot bot) {
         log.info(bot.toString());
@@ -95,22 +106,21 @@ public class DataService {
         return funcMapper.selectFunctionCountById(id);
     }
     
-    public List<PoolData> getPoolData(String botId, String version) {
+    public List<PoolData> getPoolData(String botId, Integer version) {
         List<String> botIds = botMapper.selectAllBotId();
         if (botIds.contains(botId)) {
-            botMapper.updateBotDownload();
-            List<PoolData> datas = poolMapper.selectpoolByVersion(version);
-            return List<PoolData>;
+            botMapper.updateBotDownload(botId);
+            return poolMapper.selectPoolByVersion(version);
         }
         return null;
     }
     
     public List<PoolData> getAllPoolData(Integer current) {
-        return poolMapper.selectAllpool(10 * (current - 1));
+        return poolMapper.selectAllPool(10 * (current - 1));
     }
     
     public Integer getPoolCount() {
-        reutrn poolMapper.selectPoolCount();
+        return poolMapper.selectPoolCount();
     }
 
     public Boolean setPoolData(String token, List<PoolData> poolDatas) {
@@ -129,7 +139,7 @@ public class DataService {
         return nickNameMapper.selectAllNickName();
     }
     
-    public List<NickName> setNickName(String token, List<NickName> nickName) {
+    public Boolean setNickName(String token, List<NickName> nickName) {
         Integer id = tokenUtil.getTokenId(token);
         UserInfo userInfo = userMapper.selectUserInfo(id);
 
@@ -141,12 +151,11 @@ public class DataService {
         return false;
     }
     
-    public List<NickName> getNickName(String botId, String version) {
+    public List<NickName> getNickName(String botId, Integer version) {
         List<String> botIds = botMapper.selectAllBotId();
         if (botIds.contains(botId)) {
-            botMapper.updateBotDownload();
-            List<NickName> datas = nickNameMapper.selectNickNameByVersion(version);
-            return List<NickName>;
+            botMapper.updateBotDownload(botId);
+            return nickNameMapper.selectNickNameByVersion(version);
         }
         return null;
     }

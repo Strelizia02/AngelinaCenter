@@ -55,7 +55,7 @@ public class NoticeController {
          */
     @Token
     @PostMapping("editNotice")
-    public JsonResult<Info> editNotice(@RequestHeader(value = "Authorization", required = false) String token, @ApiParam(value = "img") @RequestParam(required = false) MultipartFile img, @ApiParam(value = "id") @RequestParam Integer id, @ApiParam(value = "text") @RequestParam String text) {
+    public JsonResult<Info> editNotice(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam(required = false) MultipartFile img, @RequestParam Integer id, @RequestParam String text) {
         return JsonResult.success(noticeService.editNotice(token, id, text, img));
     }
 
@@ -76,7 +76,7 @@ public class NoticeController {
      */
     @Token
     @PostMapping("createNotice")
-    public JsonResult<Info> createNotice(@RequestHeader(value = "Authorization", required = false) String token, @ApiParam(value = "img") @RequestParam MultipartFile img, @ApiParam(value = "text") @RequestParam String text) {
+    public JsonResult<Info> createNotice(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam(required = false) MultipartFile img, @RequestParam String text) {
         return JsonResult.success(noticeService.createNotice(token, text, img));
     }
   }

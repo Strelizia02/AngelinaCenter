@@ -73,7 +73,7 @@ public class DataController {
     public JsonResult<Boolean> test() {
         //定时检测然后git clone，成功后发送更新消息
         rabbitTemplate.convertAndSend("DataVersion","", 1);
-        rabbitTemplate.convertAndSend("PoolData","", 1);
+        
         return JsonResult.success(true);
     }
     
@@ -91,6 +91,15 @@ public class DataController {
     @Token
     @GetMapping("getAllPoolData")
     public JsonResult<List<PoolData>> getAllPoolData(@RequestParam Integer current) {
-        return JsonResult.success(dataService.getAllPoolData(current), dataService.getPoolCount());
+        return JsonResult.success(dataService.getAllPoolData(current, dataService.getPoolCount());
+    }
+    
+    /**
+     * 写入卡池数据
+     */
+    @Token
+    @GetMapping("setPoolData")
+    public JsonResult<List<PoolData>> setPoolData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<PoolData> poolData) {
+        return JsonResult.success(dataService.setPoolData(token, poolData);
     }
 }

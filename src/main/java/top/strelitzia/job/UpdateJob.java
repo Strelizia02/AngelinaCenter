@@ -37,6 +37,7 @@ public class UpdateJob {
               .setRemoteBranchName("master")
               .setCredentialsProvider(provider)
               .call();
+                  rabbitTemplate.convertAndSend("DataVersion","", 1);
         } else {
             log.warning("当前正在git操作中，请稍后再试");
         }

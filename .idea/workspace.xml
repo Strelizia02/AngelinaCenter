@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="aaa">
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/NickNameMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/PoolMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/NickName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/NickNameMapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/PoolMapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/BotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/BotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/BotMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/dao/BotMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/DataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/OpenAIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/controller/OpenAIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/PoolData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/PoolData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/BotMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/BotMapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/center.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/center.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +130,7 @@
       <workItem from="1671347673464" duration="1345000" />
       <workItem from="1671368114592" duration="2400000" />
       <workItem from="1671376964524" duration="364000" />
-      <workItem from="1671449413913" duration="1757000" />
+      <workItem from="1671449413913" duration="5910000" />
     </task>
     <task id="LOCAL-00001" summary="随便改改">
       <created>1670942598797</created>
@@ -238,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671377318627</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="aaa">
+      <created>1671451190051</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1671451190051</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,6 +305,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java</url>
           <line>49</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -94,7 +94,7 @@ public class DataController {
      * 写入卡池数据
      */
     @Token
-    @GetMapping("setPoolData")
+    @PostMapping("setPoolData")
     @ApiOperation("写入一批卡池数据，需要token")
     public JsonResult<Boolean> setPoolData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<PoolData> poolData) {
         return JsonResult.success(dataService.setPoolData(token, poolData));
@@ -113,7 +113,7 @@ public class DataController {
      * 写入几条新的昵称
      */
     @Token
-    @GetMapping("setNickName")
+    @PostMapping("setNickName")
     @ApiOperation("写入一批新的昵称信息，需要token")
     public JsonResult<Boolean> setNickName(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<NickName> nickName) {
         return JsonResult.success(dataService.setNickName(token, nickName));

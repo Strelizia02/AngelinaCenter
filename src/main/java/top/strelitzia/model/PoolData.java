@@ -5,8 +5,11 @@ import lombok.Data;
 @Data
 public class PoolData {
     private String name;
+
     private Integer star;
+
     private String pool;
+
     /**
      * 0->非限定
      * 1->周年限定

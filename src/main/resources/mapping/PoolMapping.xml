@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.strelitzia.dao.PoolMapper">
+    <resultMap id="PoolMap" type="top.strelitzia.model.PoolData">
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="pool" property="pool" jdbcType="VARCHAR"/>
+        <result column="star" property="star" jdbcType="INTEGER"/>
+        <result column="limit" property="limit" jdbcType="INTEGER"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectAllPool" resultMap="PoolMap">
+        SELECT name, pool, star, `limit`, version from a_agent limit 10 offset #{current}
+    </select>
+
+    <select id="selectPoolByVersion" resultMap="PoolMap">
+        SELECT name, pool, star, `limit`, version from a_agent
+        where version = #{version}
+    </select>
+
+    <select id="selectPoolCount" resultType="java.lang.Integer">
+        select count(*) from a_agent
+    </select>
+    
+    <insert id="insertPoolData">
+        <foreach collection="list" item="item">
+        insert into a_agent (name, pool, star, `limit`, version) values (#{item.name}, #{item.pool}, #{item.star}, #{item.limit}, #{item.version})
+        </foreach>
+    </insert>
+</mapper>

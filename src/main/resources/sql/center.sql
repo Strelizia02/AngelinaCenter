@@ -26,6 +26,7 @@ CREATE TABLE `a_agent`  (
   `star` int(0) NULL DEFAULT NULL,
   `pool` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `limit` int(0) NULL DEFAULT 0 COMMENT '0->非限定\r\n1->周年限定\r\n2->联动限定\r\n3->五倍权值\r\n4->新年限定',
+  `version` int(0) NULL DEFAULT 0 ,
   PRIMARY KEY (`name`, `pool`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -36,6 +37,7 @@ DROP TABLE IF EXISTS `a_nick_name`;
 CREATE TABLE `a_nick_name`  (
   `nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `version` int(0) NULL DEFAULT 0 ,
   PRIMARY KEY (`nick_name`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -52,6 +54,7 @@ CREATE TABLE `t_bot`  (
   `receive` bigint(0) NULL DEFAULT NULL COMMENT '总接收消息量',
   `qq_count` bigint(0) NULL DEFAULT NULL COMMENT '用户数',
   `group_count` bigint(0) NULL DEFAULT NULL COMMENT '群数',
+  `download` int(0) NULL DEFAULT NULL COMMENT '下载次数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 

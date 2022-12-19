@@ -53,11 +53,11 @@
         from t_qq
     </select>
 
-    <select id="upsertBot">
+    <update id="upsertBot">
         insert into t_bot (id, bot_name) values (#{id}, #{name})
             on duplicate key update
         bot_name = #{name}
-    </select>
+    </update>
 
     <update id="updateBotInfo">
         insert into t_bot (id, ram, qq_count, group_count, send, receive) values (#{id}, #{ram}, #{qqCount}, #{groupCount}, #{send}, #{receive})
@@ -67,5 +67,15 @@
          group_count = #{groupCount},
          send = send + #{send},
          receive = receive + #{receive}
+    </update>
+
+    <select id="selectAllBotId" resultType="java.lang.String">
+        select id from t_bot
+    </select>
+
+    <update id="updateBotDownload">
+        update t_bot
+        set download = download + 1
+        where id = #{botId}
     </update>
 </mapper>

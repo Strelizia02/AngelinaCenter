@@ -21,6 +21,7 @@ import java.util.List;
 @RequestMapping("data")
 @RestController
 @Slf4j
+@Api("数据信息查询接口")
 public class DataController {
 
     @Autowired
@@ -35,6 +36,7 @@ public class DataController {
      */
     @Token
     @GetMapping("getBotList")
+    @ApiOperation("查询某个账号拥有的所有Bot列表")
     public JsonResult<List<Bot>> getBotList(@RequestHeader(value = "Authorization", required = false) String token) {
         //TODO 数据库里记录的是每个账号的最后一次心跳时间，超过五分钟没有心跳就算离线
         return JsonResult.success(dataService.getBotList(token));
@@ -45,6 +47,7 @@ public class DataController {
      * @return 在线几个、离线几个、一共几个
      */
     @GetMapping("getBotBoard")
+    @ApiOperation("Bot图表用接口，只返回在线和离线数量")
     public JsonResult<BotData> getBotBoard() {
         //TODO 统计一下，返回一个数据量少一点的
         return JsonResult.success(dataService.getBotBoard());
@@ -55,6 +58,7 @@ public class DataController {
      * @return 每个功能的详细调用次数
      */
     @GetMapping("getFuncList")
+    @ApiOperation("获取全部功能的调用次数")
     public JsonResult<List<Function>> getFuncList() {
         return JsonResult.success(dataService.getFuncList());
     }
@@ -65,6 +69,7 @@ public class DataController {
      */
     @Token
     @GetMapping("getSomeOneFuncList")
+    @ApiOperation("根据token获取某个人的功能调用次数")
     public JsonResult<List<Function>> getSomeOneFuncList(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(dataService.getSomeOneFuncList(token));
     }
@@ -73,6 +78,7 @@ public class DataController {
      * 根据用户传回来的版本号，推送最新的卡池信息
      */
     @GetMapping("getPoolData")
+    @ApiOperation("Bot用机机接口，根据用户传回来的版本号，推送他缺失的卡池信息")
     public JsonResult<List<PoolData>> getPoolData(@RequestParam String botId, @RequestParam String version) {
         return JsonResult.success(dataService.getPoolData(String botId, String version));
     }
@@ -82,6 +88,7 @@ public class DataController {
      */
     @Token
     @GetMapping("getAllPoolData")
+    @ApiOperation("分页查询某一页的卡池数据（一页10条写死）")
     public JsonResult<List<PoolData>> getAllPoolData(@RequestParam Integer current) {
         return JsonResult.success(dataService.getAllPoolData(current, dataService.getPoolCount());
     }
@@ -91,6 +98,7 @@ public class DataController {
      */
     @Token
     @GetMapping("setPoolData")
+    @ApiOperation("写入一批卡池数据")
     public JsonResult<Boolean> setPoolData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<PoolData> poolData) {
         return JsonResult.success(dataService.setPoolData(token, poolData));
     }
@@ -100,6 +108,7 @@ public class DataController {
      */
     @Token
     @GetMapping("getAllNickName")
+    @ApiOperation("查询全部的昵称数据")
     public JsonResult<List<NickName>> getAllNickName(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(dataService.getAllNickName());
     }
@@ -109,6 +118,7 @@ public class DataController {
      */
     @Token
     @GetMapping("setNickName")
+    @ApiOperation("写入一批新的昵称信息")
     public JsonResult<Boolean> setNickName(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<NickName> nickName) {
         return JsonResult.success(dataService.setNickName(token, poolData);
     }
@@ -118,6 +128,7 @@ public class DataController {
      */
     @Token
     @GetMapping("getNickName")
+    @ApiOperation("Bot用机机接口，根据用户版本号获取新的昵称数据")
     public JsonResult<Boolean> getNickName(@RequestParam String botId, @RequestParam String version) {
         return JsonResult.success(dataService.getNickName(token, poolData);
     }

@@ -33,6 +33,7 @@ public class FileController {
 
 
    @PostMapping("download")
+   @ApiOperation("对外提供下载文件接口")
    public ResponseEntity<FileSystemResource> downloadFile(@RequestParam String fileName, @RequestParam String botId) {
         List<String> botIds = botMapper.selectAllBotId();
     if (botIds.contains(botId) && fileNameList.contains(fileName)) {

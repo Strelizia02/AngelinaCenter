@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("bot")
 @RestController
 @Slf4j
+@Api("Bot用机机接口及相关信息查询接口")
 public class BotController {
 
     @Autowired
@@ -28,6 +29,7 @@ public class BotController {
      * @param bot bot信息，包含了一个botid和其下账号的在线信息
      */
     @PostMapping("heartBeats")
+    @ApiOperation("Bot使用的机机接口，用于心跳保持在线状态")
     public JsonResult<String> heartBeats(@RequestBody Bot bot) {
         log.info(bot.toString());
         return JsonResult.success(dataService.heartBeats(bot));
@@ -38,6 +40,7 @@ public class BotController {
      * @return true/false
      */
     @PostMapping("pushData")
+    @ApiOperation("Bot使用的机机接口，用于定时同步Bot的运行数据")
     public JsonResult<Boolean> pushData(@RequestBody PushData list) {
         return JsonResult.success(dataService.pushData(list));
     }

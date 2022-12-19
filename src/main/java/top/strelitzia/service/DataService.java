@@ -125,7 +125,7 @@ public class DataService {
         return false;
     }
     
-    public List<NickName> getNickName() {
+    public List<NickName> getAllNickName() {
         return nickNameMapper.selectAllNickName();
     }
     

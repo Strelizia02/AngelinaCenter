@@ -19,6 +19,7 @@ import top.strelitzia.vo.JsonResult;
 @RequestMapping("login")
 @RestController
 @Slf4j
+@Api("登录相关接口")
 public class LoginController {
     
     @Autowired
@@ -33,6 +34,7 @@ public class LoginController {
      * @return 登录人信息
      */
     @PostMapping("pwd")
+    @ApiOperation("使用密码进行登录")
     public JsonResult<LoginInfo> pwdLogin(@RequestBody UserInfo userInfo) {
         return JsonResult.success(loginService.pwdLogin(userInfo));
     }
@@ -43,6 +45,7 @@ public class LoginController {
      * @return 登录人信息
      */
     @GetMapping("captcha")
+    @ApiOperation("检查验证码是否验证通过")
     public JsonResult<LoginInfo> captchaLogin(@RequestParam String qq) {
         return JsonResult.success(loginService.captchaLogin(qq));
     }
@@ -53,6 +56,7 @@ public class LoginController {
      * @return 验证码字符串
      */
     @GetMapping("creatCaptcha")
+    @ApiOperation("创建一个随机验证码")
     public JsonResult<String> creatCaptcha(@RequestParam String qq) {
         return JsonResult.success(loginService.creatCaptcha(qq));
     }
@@ -63,6 +67,7 @@ public class LoginController {
      * @return 验证码字符串
      */
     @PostMapping("receiveCaptcha")
+    @ApiOperation("Bot用机机接口，用于验证登录。")
     public JsonResult<Boolean> receiveCaptcha(@RequestBody CaptchaReceive captchaReceive) {
         return JsonResult.success(loginService.receivedCaptcha(captchaReceive));
     }
@@ -73,6 +78,7 @@ public class LoginController {
      * @return 注册成功的个人信息
      */
     @PostMapping("register")
+    @ApiOperation("注册账号")
     public JsonResult<LoginInfo> register(@RequestBody UserInfo userInfo) {
         return JsonResult.success(loginService.register(userInfo));
     }
@@ -82,6 +88,7 @@ public class LoginController {
      * @return 公钥字符串，公钥编号
      */
     @GetMapping("getRSAPublicKey")
+    @ApiOperation("获取当前RSA公钥")
     public JsonResult<String> getRSAPublicKey() {
         return JsonResult.success(rSAUtil.getPublicKey());
     }

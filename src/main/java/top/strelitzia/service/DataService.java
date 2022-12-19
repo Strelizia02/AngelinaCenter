@@ -104,4 +104,13 @@ public class DataService {
         }
         return null;
     }
+    
+    public List<PoolData> getAllPoolData(Integer current) {
+        return poolMapper.selectAllpool(10 * (current - 1));
+    }
+    
+    public Integer getPoolCount() {
+        reutrn poolMapper.selectPoolCount(pool);
+    }
+
 }

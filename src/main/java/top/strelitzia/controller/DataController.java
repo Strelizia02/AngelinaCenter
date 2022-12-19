@@ -84,4 +84,13 @@ public class DataController {
     public JsonResult<List<PoolData>> getPoolData(@RequestParam String botId, @RequestParam String version) {
         return JsonResult.success(dataService.getPoolData(String botId, String version));
     }
+    
+    /**
+     * 分页查询某一页的卡池数据（一页10条写死）
+     */
+    @Token
+    @GetMapping("getAllPoolData")
+    public JsonResult<List<PoolData>> getAllPoolData(@RequestParam Integer current) {
+        return JsonResult.success(dataService.getAllPoolData(current), dataService.getPoolCount());
+    }
 }

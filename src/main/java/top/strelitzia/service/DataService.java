@@ -124,4 +124,30 @@ public class DataService {
         }
         return false;
     }
+    
+    public List<NickName> getNickName() {
+        return nickNameMapper.selectAllNickName();
+    }
+    
+    public List<NickName> setNickName(String token, List<NickName> nickName) {
+        Integer id = tokenUtil.getTokenId(token);
+        UserInfo userInfo = userMapper.selectUserInfo(id);
+
+        if (userInfo.getIsAdmin() == 1) {
+            nickNameMapper.insertNickName(nickName);
+            rabbitTemplate.convertAndSend("NickName","", 1);
+            return true;
+        }
+        return false;
+    }
+    
+    public List<NickName> getNickName(String botId, String version) {
+        List<String> botIds = botMapper.selectAllBotId();
+        if (botIds.contains(botId)) {
+            botMapper.updateBotDownload();
+            List<NickName> datas = nickNameMapper.selectNickNameByVersion(version);
+            return List<NickName>;
+        }
+        return null;
+    }
 }

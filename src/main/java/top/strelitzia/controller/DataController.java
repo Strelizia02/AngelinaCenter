@@ -74,7 +74,14 @@ public class DataController {
         //定时检测然后git clone，成功后发送更新消息
         rabbitTemplate.convertAndSend("DataVersion","", 1);
         rabbitTemplate.convertAndSend("PoolData","", 1);
-        rabbitTemplate.convertAndSend("NickName","", 1);
         return JsonResult.success(true);
+    }
+    
+    /**
+     * 根据用户传回来的版本号，推送最新的卡池信息
+     */
+    @GetMapping("getPoolData")
+    public JsonResult<PoolData> getPoolData(@RequestParam String botId, @RequestParam String version) {
+        return JsonResult.success(dataService.getPoolData(String botId, String version));
     }
 }

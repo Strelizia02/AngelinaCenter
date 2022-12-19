@@ -113,4 +113,15 @@ public class DataService {
         reutrn poolMapper.selectPoolCount();
     }
 
+    public Boolean setPoolData(String token, List<PoolData> poolDatas) {
+        Integer id = tokenUtil.getTokenId(token);
+        UserInfo userInfo = userMapper.selectUserInfo(id);
+
+        if (userInfo.getIsAdmin() == 1) {
+            poolMapper.insertPoolData(poolDatas);
+            rabbitTemplate.convertAndSend("PoolData","", 1);
+            return true;
+        }
+        return false;
+    }
 }

@@ -81,7 +81,7 @@ public class DataController {
      * 根据用户传回来的版本号，推送最新的卡池信息
      */
     @GetMapping("getPoolData")
-    public JsonResult<PoolData> getPoolData(@RequestParam String botId, @RequestParam String version) {
+    public JsonResult<List<PoolData>> getPoolData(@RequestParam String botId, @RequestParam String version) {
         return JsonResult.success(dataService.getPoolData(String botId, String version));
     }
 }

@@ -110,7 +110,7 @@ public class DataService {
     }
     
     public Integer getPoolCount() {
-        reutrn poolMapper.selectPoolCount(pool);
+        reutrn poolMapper.selectPoolCount();
     }
 
 }

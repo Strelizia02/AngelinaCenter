@@ -94,4 +94,14 @@ public class DataService {
         Integer id = tokenUtil.getTokenId(token);
         return funcMapper.selectFunctionCountById(id);
     }
+    
+    public List<PoolData> getPoolData(String botId, String version) {
+        List<String> botIds = botMapper.selectAllBotId();
+        if (botIds.contains(botId)) {
+            botMapper.updateBotDownload();
+            List<PoolData> datas = poolMapper.selectpoolByVersion(version);
+            return List<PoolData>;
+        }
+        return null;
+    }
 }

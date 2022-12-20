@@ -129,7 +129,7 @@ public class DataService {
 
         if (userInfo.getIsAdmin() == 1) {
             poolMapper.insertPoolData(poolDatas);
-            rabbitTemplate.convertAndSend("PoolData","", 1);
+            rabbitTemplate.convertAndSend("PoolData","", poolDatas);
             return true;
         }
         return false;
@@ -145,7 +145,7 @@ public class DataService {
 
         if (userInfo.getIsAdmin() == 1) {
             nickNameMapper.insertNickName(nickName);
-            rabbitTemplate.convertAndSend("NickName","", 1);
+            rabbitTemplate.convertAndSend("NickName","", nickName);
             return true;
         }
         return false;

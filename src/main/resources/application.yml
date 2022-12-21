@@ -1,5 +1,13 @@
 server:
   port: 8087
+  tomcat:
+    #最大链接数
+    max-connections: 1500
+    #最大等待队列长度
+    accept-count: 1000
+    threads:
+      min-spare: 4
+      max: 10
 spring:
   datasource:
     angelinaDataSource:

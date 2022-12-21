@@ -129,6 +129,7 @@ public class DataService {
 
         if (userInfo.getIsAdmin() == 1) {
             poolMapper.insertPoolData(poolDatas);
+            //这里要转成JSON，传对象必须包名类名完全相同
             rabbitTemplate.convertAndSend("PoolData","", poolDatas);
             return true;
         }

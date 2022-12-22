@@ -129,8 +129,18 @@ public class DataService {
 
         if (userInfo.getIsAdmin() == 1) {
             poolMapper.insertPoolData(poolDatas);
-            //这里要转成JSON，传对象必须包名类名完全相同
-            rabbitTemplate.convertAndSend("PoolData","", poolDatas);
+            JSONArray arr = new JSONArry();
+            for (Pooldata d: poolDatas) {
+                JSONObject obj = new JSONObject;
+                obj.put("pool", d.getPool());
+                obj.put("name", d.getName());
+                obj.put("limit", d.getLimit());
+                obj.put("star", d.getStar());
+                obj.put("version", d.getVersion());
+                arr.add(obj);
+            }
+            
+            rabbitTemplate.convertAndSend("PoolData","", arr.toString());
             return true;
         }
         return false;
@@ -146,7 +156,16 @@ public class DataService {
 
         if (userInfo.getIsAdmin() == 1) {
             nickNameMapper.insertNickName(nickName);
-            rabbitTemplate.convertAndSend("NickName","", nickName);
+            
+            JSONArray arr = new JSONArry();
+            for (Pooldata d: poolDatas) {
+                JSONObject obj = new JSONObject;
+                obj.put("nickName", d.getNickName());
+                obj.put("name", d.getName());
+                obj.put("version", d.getVersion());
+                arr.add(obj);
+            }
+            rabbitTemplate.convertAndSend("NickName","", arr);
             return true;
         }
         return false;

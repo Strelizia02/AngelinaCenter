@@ -25,7 +25,7 @@
     <insert id="insertPoolData">
         <foreach collection="list" item="item">
             insert into a_agent (name, pool, star, `limit`, version) values (#{item.name}, #{item.pool}, #{item.star}, #{item.limit}, #{item.version})
-            on duplicate key update version=#{version}
+            on duplicate key update version=#{item.version}
         </foreach>
     </insert>
 </mapper>

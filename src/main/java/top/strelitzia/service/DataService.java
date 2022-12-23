@@ -1,6 +1,8 @@
 package top.strelitzia.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -129,15 +131,15 @@ public class DataService {
 
         if (userInfo.getIsAdmin() == 1) {
             poolMapper.insertPoolData(poolDatas);
-            JSONArray arr = new JSONArry();
-            for (Pooldata d: poolDatas) {
-                JSONObject obj = new JSONObject;
+            JSONArray arr = new JSONArray();
+            for (PoolData d: poolDatas) {
+                JSONObject obj = new JSONObject();
                 obj.put("pool", d.getPool());
                 obj.put("name", d.getName());
                 obj.put("limit", d.getLimit());
                 obj.put("star", d.getStar());
                 obj.put("version", d.getVersion());
-                arr.add(obj);
+                arr.put(obj);
             }
             
             rabbitTemplate.convertAndSend("PoolData","", arr.toString());
@@ -157,15 +159,15 @@ public class DataService {
         if (userInfo.getIsAdmin() == 1) {
             nickNameMapper.insertNickName(nickName);
             
-            JSONArray arr = new JSONArry();
-            for (Pooldata d: poolDatas) {
-                JSONObject obj = new JSONObject;
-                obj.put("nickName", d.getNickName());
-                obj.put("name", d.getName());
-                obj.put("version", d.getVersion());
-                arr.add(obj);
+            JSONArray arr = new JSONArray();
+            for (NickName n: nickName) {
+                JSONObject obj = new JSONObject();
+                obj.put("nickName", n.getNickName());
+                obj.put("name", n.getName());
+                obj.put("version", n.getVersion());
+                arr.put(obj);
             }
-            rabbitTemplate.convertAndSend("NickName","", arr);
+            rabbitTemplate.convertAndSend("NickName","", arr.toString());
             return true;
         }
         return false;

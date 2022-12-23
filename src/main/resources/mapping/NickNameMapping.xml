@@ -19,6 +19,7 @@
     <insert id="insertNickName">
         <foreach collection="list" item="item">
         insert into a_nick_name (name, nick_name, version) values (#{item.name}, #{item.nickName}, #{item.version})
+        on duplicate key update version=#{version}
         </foreach>
     </insert>
 </mapper>

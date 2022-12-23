@@ -39,7 +39,7 @@ public class UpdateJob {
     @Autowired
     private RabbitTemplate rabbitTemplate;
   
-//    @Scheduled(cron = "*/1 * * * * ?")
+    @Scheduled(fixedDelay = 1000 * 60 * 60)
     @Async
     public void updateGameDataJob() throws GitAPIException, IOException {
         String versionUrl = "https://raw.fastgit.org/yuanyan3060/Arknights-Bot-Resource/master/gamedata/excel/data_version.txt";

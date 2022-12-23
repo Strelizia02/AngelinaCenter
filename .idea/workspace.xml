@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="aaa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/NickName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/NickName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/PoolData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/model/PoolData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/service/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/NickNameMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/NickNameMapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/PoolMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/PoolMapping.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +126,8 @@
       <workItem from="1671368114592" duration="2400000" />
       <workItem from="1671376964524" duration="364000" />
       <workItem from="1671449413913" duration="5927000" />
-      <workItem from="1671625491529" duration="3053000" />
+      <workItem from="1671625491529" duration="3098000" />
+      <workItem from="1671801977338" duration="3043000" />
     </task>
     <task id="LOCAL-00001" summary="随便改改">
       <created>1670942598797</created>
@@ -247,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671455334379</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="aaa">
+      <created>1671631076927</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1671631076927</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -3,7 +3,6 @@ package top.strelitzia.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
@@ -36,8 +35,17 @@ public class DataController {
     @GetMapping("getBotList")
     @ApiOperation("查询某个账号拥有的所有Bot列表，需要token")
     public JsonResult<List<Bot>> getBotList(@RequestHeader(value = "Authorization", required = false) String token) {
-        //TODO 数据库里记录的是每个账号的最后一次心跳时间，超过五分钟没有心跳就算离线
         return JsonResult.success(dataService.getBotList(token));
+    }
+
+    /**
+     * 获取某个账号下所有Bot的列表
+     * @return 全部信息
+     */
+    @GetMapping("getAllBotData")
+    @ApiOperation("查询全部运行数据的合集")
+    public JsonResult<Bot> getAllBotData() {
+        return JsonResult.success(dataService.getAllBotData());
     }
   
     /**
@@ -47,7 +55,6 @@ public class DataController {
     @GetMapping("getBotBoard")
     @ApiOperation("Bot图表用接口，只返回在线和离线数量")
     public JsonResult<BotData> getBotBoard() {
-        //TODO 统计一下，返回一个数据量少一点的
         return JsonResult.success(dataService.getBotBoard());
     }
   
@@ -97,7 +104,11 @@ public class DataController {
     @PostMapping("setPoolData")
     @ApiOperation("写入一批卡池数据，需要token")
     public JsonResult<Boolean> setPoolData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<PoolData> poolData) {
-        return JsonResult.success(dataService.setPoolData(token, poolData));
+        if (dataService.setPoolData(token, poolData)) {
+            return JsonResult.success(true);
+        } else {
+            return JsonResult.failure();
+        }
     }
                                   
     /**
@@ -116,7 +127,11 @@ public class DataController {
     @PostMapping("setNickName")
     @ApiOperation("写入一批新的昵称信息，需要token")
     public JsonResult<Boolean> setNickName(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<NickName> nickName) {
-        return JsonResult.success(dataService.setNickName(token, nickName));
+        if (dataService.setNickName(token, nickName)) {
+            return JsonResult.success(true);
+        } else {
+            return JsonResult.failure();
+        }
     }
                                   
     /**

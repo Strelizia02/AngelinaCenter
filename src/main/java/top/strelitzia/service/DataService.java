@@ -66,6 +66,10 @@ public class DataService {
         Integer id = tokenUtil.getTokenId(token);
         return botMapper.selectBotById(id);
     }
+
+    public Bot getAllBotData() {
+        return botMapper.selectAllBotData();
+    }
     
     public BotData getBotBoard() {
         return botMapper.selectCountBot();

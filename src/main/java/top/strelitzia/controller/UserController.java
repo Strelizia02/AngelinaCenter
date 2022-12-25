@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
+import top.strelitzia.model.Info;
 import top.strelitzia.model.NewPwd;
 import top.strelitzia.model.UserInfo;
 import top.strelitzia.service.UserService;
@@ -68,7 +69,7 @@ public class UserController {
     @Token
     @GetMapping("addUserBot")
     @ApiOperation("绑定一个Bot，需要token")
-    public JsonResult<Boolean> addUserBot(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String qq) {
+    public JsonResult<Info> addUserBot(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam String qq) {
         return JsonResult.success(userService.addUserBot(token, qq));
     }
 

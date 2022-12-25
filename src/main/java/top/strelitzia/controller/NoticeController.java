@@ -1,6 +1,5 @@
 package top.strelitzia.controller;
 
-import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,12 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 import top.strelitzia.annotation.Token;
 import top.strelitzia.model.*;
 import top.strelitzia.service.NoticeService;
-import top.strelitzia.service.UserService;
 import top.strelitzia.vo.JsonResult;
 
-import javax.imageio.ImageIO;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 
@@ -27,12 +22,13 @@ import java.util.List;
 @RestController
 @Slf4j
 public class NoticeController {
-    
+
     @Autowired
     private NoticeService noticeService;
 
     /**
      * 获取全部公告信息
+     *
      * @return 公告信息
      */
     @GetMapping("getNotice")
@@ -49,10 +45,11 @@ public class NoticeController {
     }
 
 
-        /**
-         * 编辑某条公告信息
-         * @return 公告信息
-         */
+    /**
+     * 编辑某条公告信息
+     *
+     * @return 公告信息
+     */
     @Token
     @PostMapping("editNotice")
     public JsonResult<Info> editNotice(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam(required = false) MultipartFile img, @RequestParam Integer id, @RequestParam String text) {
@@ -61,17 +58,19 @@ public class NoticeController {
 
     /**
      * 删除某条公告信息
+     *
      * @return true/false
      */
     @Token
     @DeleteMapping("deleteNotice")
     public JsonResult<Info> deleteNotice(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam Integer noticeId) {
-      //TODO 这里要做权限校验，看看这个人有没有权限删除
+        //TODO 这里要做权限校验，看看这个人有没有权限删除
         return JsonResult.success(noticeService.deleteNotice(token, noticeId));
     }
-  
+
     /**
      * 创建一条公告
+     *
      * @return 公告
      */
     @Token
@@ -79,4 +78,4 @@ public class NoticeController {
     public JsonResult<Info> createNotice(@RequestHeader(value = "Authorization", required = false) String token, @RequestParam(required = false) MultipartFile img, @RequestParam String text) {
         return JsonResult.success(noticeService.createNotice(token, text, img));
     }
-  }
+}

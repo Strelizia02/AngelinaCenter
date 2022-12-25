@@ -31,4 +31,6 @@ public interface BotMapper {
     List<String> selectAllBotId();
 
     Integer updateBotDownload(@Param("botId") String botId);
+
+    Bot selectAllBotData();
 }

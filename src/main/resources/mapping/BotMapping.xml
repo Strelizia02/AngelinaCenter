@@ -78,4 +78,10 @@
         set download = download + 1
         where id = #{botId}
     </update>
+
+    <select id="selectAllBotData" resultMap="BotMap">
+        select
+            sum(ram) as ram, sum(qq_count) as qq_count, sum(group_count) as group_count, sum(send) as send, sum(receive) as receive
+        from t_bot
+    </select>
 </mapper>

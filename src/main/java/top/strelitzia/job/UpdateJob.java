@@ -2,13 +2,15 @@ package top.strelitzia.job;
 
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.eclipse.jgit.transport.CredentialsProvider;
-import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.eclipse.jgit.transport.RemoteConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,6 +33,9 @@ import java.nio.file.Paths;
 @Component
 @Slf4j
 public class UpdateJob {
+
+    @Value("${git-path}")
+    private String path;
     private static int updateStatus = 0;
 
     @Autowired
@@ -44,17 +49,17 @@ public class UpdateJob {
     public void updateGameDataJob() throws GitAPIException, IOException {
         String versionUrl = "https://raw.fastgit.org/yuanyan3060/Arknights-Bot-Resource/master/gamedata/excel/data_version.txt";
         String version = getStringFromUrl(versionUrl);
-//        String localVersion = getStringFromFile("runFile/download/data_version.txt");
+        String localVersion = getStringFromFile("runFile/git/gamedata/excel/data_version.txt");
 
-        if (updateStatus == 0 && !version.equals("localVersion")) {
+        if (updateStatus == 0 && !version.equals(localVersion)) {
+            log.info("正在尝试git pull");
             updateStatus = 1;
             Repository repo = new FileRepositoryBuilder()
-              .setGitDir(Paths.get("E:\\MyProject\\Arknights-Bot-Resource\\.git").toFile())
+              .setGitDir(Paths.get(path, ".git").toFile())
               .build();
             Git git = new Git(repo);
-            git.pull()
-              .setRemoteBranchName("main")
-              .call();
+            git.checkout().setName("main").call();
+            git.pull().call();
           rabbitTemplate.convertAndSend("DataVersion","", 1);
             updateStatus = 0;
             log.info("git成功");

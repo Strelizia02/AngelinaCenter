@@ -1,22 +1,21 @@
 package top.strelitzia.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import top.strelitzia.dao.BotMapper;
 import top.strelitzia.dao.UserMapper;
-import top.strelitzia.model.Bot;
+import top.strelitzia.model.Info;
 import top.strelitzia.model.NewPwd;
 import top.strelitzia.model.UserInfo;
 import top.strelitzia.util.RSAUtil;
 import top.strelitzia.util.TokenUtil;
 
-import java.util.List;
-
 @Service
+@Slf4j
 public class UserService {
     
     @Autowired
@@ -44,7 +43,7 @@ public class UserService {
         return userMapper.selectUserInfo(id);
     }
     
-    public Boolean addUserBot(String token, String qq) {
+    public Info addUserBot(String token, String qq) {
         Integer id = tokenUtil.getTokenId(token);
         String botId = botMapper.selectBotIdByQq(qq);
         if (redisTemplate.hasKey(qq)) {
@@ -53,10 +52,15 @@ public class UserService {
                 //有没有验证过
                 botMapper.updateUser(id, botId);
                 redisTemplate.delete(qq);
-                return true;
+                return new Info(true, "成功");
+            } else {
+                log.warn("还没有进行验证");
+                return new Info(false, "还没有进行验证");
             }
+        } else {
+            log.warn("还没有生成验证码");
+            return new Info(false, "还没有生成验证码");
         }
-        return false;
     }
 
     public Boolean removeUserBot(String token, String botId) {

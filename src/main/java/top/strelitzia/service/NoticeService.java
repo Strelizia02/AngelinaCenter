@@ -10,7 +10,6 @@ import top.strelitzia.model.Notice;
 import top.strelitzia.model.UserInfo;
 import top.strelitzia.util.TokenUtil;
 
-import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.List;
 

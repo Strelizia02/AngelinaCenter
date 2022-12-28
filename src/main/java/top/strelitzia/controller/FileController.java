@@ -7,10 +7,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.strelitzia.dao.BotMapper;
 
 import java.io.File;
@@ -45,11 +42,10 @@ public class FileController {
         put("skin_table.json", "runFile/git/gamedata/excel/skin_table.json");
         put("battle_equip_table.json", "runFile/git/gamedata/excel/battle_equip_table.json");
         put("uniequip_table.json", "runFile/git/gamedata/excel/uniequip_table.json");
-        put("enemy_database.json", "runFile/git/gamedata/levels/enemydata/enemy_database.json");
         put("data_version.txt", "runFile/git/gamedata/excel/data_version.txt");
     }};
 
-    @PostMapping("download")
+    @GetMapping("download")
     @ApiOperation("对外提供下载文件接口")
     public ResponseEntity<FileSystemResource> downloadFile(@RequestParam String fileName, @RequestParam String botId) {
         List<String> botIds = botMapper.selectAllBotId();

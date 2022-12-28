@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.strelitzia.dao.VisitMapper">
+    <resultMap id="VisitMap" type="top.strelitzia.model.VisitData">
+        <result column="time" property="name" jdbcType="VARCHAR"/>
+        <result column="url" property="name" jdbcType="VARCHAR"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectVisitByUrl" resultMap="VisitMap">
+        select count(url) as count, url from t_visit group by url
+    </select>
+
+    <select id="selectVisitByTime" resultMap="VisitMap">
+        select count(url) as count, Hour(FROM_UNIXTIME(time/1000)) as time from t_visit where time > UNIX_TIMESTAMP(NOW() - interval 1 hour) * 1000 group by Hour(FROM_UNIXTIME(time/1000))
+    </select>
+    
+    <insert id="insertVisit">
+        insert into t_visit (url, time) values (#{url}, #{time})
+    </insert>
+</mapper>

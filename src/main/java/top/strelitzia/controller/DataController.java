@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.strelitzia.annotation.Token;
+import top.strelitzia.dao.VisitMapper;
 import top.strelitzia.model.*;
 import top.strelitzia.service.DataService;
 import top.strelitzia.vo.JsonResult;
@@ -26,6 +27,9 @@ public class DataController {
 
     @Autowired
     private DataService dataService;
+
+    @Autowired
+    private VisitMapper visitMapper;
 
     /**
      * 获取某个账号下所有Bot的列表
@@ -141,5 +145,26 @@ public class DataController {
     @ApiOperation("Bot用机机接口，根据用户版本号获取新的昵称数据")
     public JsonResult<List<NickName>> getNickName(@RequestParam String botId, @RequestParam Integer version) {
         return JsonResult.success(dataService.getNickName(botId, version));
+    }
+
+    /**
+     * 用户访问某个页面时用的数据埋点
+     */
+    @GetMapping("visitPage")
+    @ApiOperation("用户访问某个页面时用的数据埋点")
+    public JsonResult<Integer> visitPage(@RequestParam String url) {
+        return JsonResult.success(visitMapper.insertVisit(url, System.currentTimeMillis()));
+    }
+
+    @GetMapping("getVisitPageDataByTime")
+    @ApiOperation("页面访问数据统计，统计最近24小时")
+    public JsonResult<List<Integer>> getVisitPageDataByTime() {
+        return JsonResult.success(visitMapper.selectVisitByTime());
+    }
+
+    @GetMapping("getVisitPageDataByPage")
+    @ApiOperation("页面访问数据统计，按页面统计全量")
+    public JsonResult<List<Integer>> getVisitPageDataByPage() {
+        return JsonResult.success(visitMapper.selectVisitByUrl());
     }
 }

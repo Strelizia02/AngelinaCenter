@@ -1,13 +1,7 @@
 package top.strelitzia.job;
 
 import lombok.extern.slf4j.Slf4j;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.MergeCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.lib.Ref;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.eclipse.jgit.transport.RemoteConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +17,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 /**
  * @author strelitzia
@@ -54,13 +47,9 @@ public class UpdateJob {
         if (updateStatus == 0 && !version.equals(localVersion)) {
             log.info("正在尝试git pull");
             updateStatus = 1;
-            Repository repo = new FileRepositoryBuilder()
-              .setGitDir(Paths.get(path, ".git").toFile())
-              .build();
-            Git git = new Git(repo);
-            git.checkout().setName("main").call();
-            git.pull().call();
-          rabbitTemplate.convertAndSend("DataVersion","", 1);
+            Runtime.getRuntime().exec("cd " + path);
+            Runtime.getRuntime().exec("git pull");
+            rabbitTemplate.convertAndSend("DataVersion","", 1);
             updateStatus = 0;
             log.info("git成功");
         } else {

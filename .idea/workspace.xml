@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="增加统计数据">
+    <list default="true" id="efdfe41b-db96-4b4d-ae81-5a242c63c9d0" name="Changes" comment="表结构同步">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/center.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/center.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +134,11 @@
       <workItem from="1671933191484" duration="7198000" />
       <workItem from="1671951838888" duration="5981000" />
       <workItem from="1671969906184" duration="611000" />
-      <workItem from="1672209409338" duration="6931000" />
+      <workItem from="1672209409338" duration="6982000" />
+      <workItem from="1672234494420" duration="3000" />
+      <workItem from="1672234550696" duration="1950000" />
+      <workItem from="1672395314183" duration="1246000" />
+      <workItem from="1672463894709" duration="1748000" />
     </task>
     <task id="LOCAL-00001" summary="随便改改">
       <created>1670942598797</created>
@@ -297,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672234101753</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="表结构同步">
+      <created>1672234213923</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1672234213923</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +339,8 @@
     <MESSAGE value="增加运营数据接口" />
     <MESSAGE value="下载文件" />
     <MESSAGE value="增加统计数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加统计数据" />
+    <MESSAGE value="表结构同步" />
+    <option name="LAST_COMMIT_MESSAGE" value="表结构同步" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -362,11 +374,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/service/UserService.java</url>
           <line>48</line>
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/top/strelitzia/job/UpdateJob.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

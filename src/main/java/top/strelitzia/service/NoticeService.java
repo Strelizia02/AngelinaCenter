@@ -50,10 +50,9 @@ public class NoticeService {
         UserInfo userInfo = userMapper.selectUserInfo(id);
 
         if (userInfo.getIsAdmin() == 1) {
-            String path = null;
+            String path = noticeMapper.selectNoticeImgById(noticeId);
             if (img != null) {
-                String old = noticeMapper.selectNoticeImgById(noticeId);
-                new File(old).deleteOnExit();
+                new File(path).deleteOnExit();
                 path = fileService.saveFile(img);
             }
             noticeMapper.updateNotice(noticeId, text, path);

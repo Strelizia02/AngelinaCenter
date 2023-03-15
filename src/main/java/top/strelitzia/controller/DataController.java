@@ -51,7 +51,7 @@ public class DataController {
     public JsonResult<Bot> getAllBotData() {
         return JsonResult.success(dataService.getAllBotData());
     }
-  
+
     /**
      * 获取Bot图表数据
      * @return 在线几个、离线几个、一共几个
@@ -61,7 +61,7 @@ public class DataController {
     public JsonResult<BotData> getBotBoard() {
         return JsonResult.success(dataService.getBotBoard());
     }
-  
+
     /**
      * 获取全部功能的列表
      * @return 每个功能的详细调用次数
@@ -71,7 +71,7 @@ public class DataController {
     public JsonResult<List<Function>> getFuncList() {
         return JsonResult.success(dataService.getFuncList());
     }
-    
+
     /**
      * 获取某个人的功能的列表
      * @return 每个功能的详细调用次数
@@ -82,7 +82,7 @@ public class DataController {
     public JsonResult<List<Function>> getSomeOneFuncList(@RequestHeader(value = "Authorization", required = false) String token) {
         return JsonResult.success(dataService.getSomeOneFuncList(token));
     }
-    
+
     /**
      * 根据用户传回来的版本号，推送最新的卡池信息
      */
@@ -91,7 +91,7 @@ public class DataController {
     public JsonResult<List<PoolData>> getPoolData(@RequestParam String botId, @RequestParam Integer version) {
         return JsonResult.success(dataService.getPoolData(botId, version));
     }
-    
+
     /**
      * 分页查询某一页的卡池数据（一页10条写死）
      */
@@ -100,7 +100,7 @@ public class DataController {
     public JsonResult<List<PoolData>> getAllPoolData(@RequestParam Integer current) {
         return JsonResult.success(dataService.getAllPoolData(current), dataService.getPoolCount());
     }
-    
+
     /**
      * 写入卡池数据
      */
@@ -114,7 +114,21 @@ public class DataController {
             return JsonResult.failure();
         }
     }
-                                  
+
+    /**
+     * 删除卡池数据
+     */
+    @Token
+    @GetMapping("removePoolData")
+    @ApiOperation("删除一批卡池数据，需要token")
+    public JsonResult<Boolean> removePoolData(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<PoolData> poolData) {
+        if (dataService.removePoolData(token, poolData)) {
+            return JsonResult.success(true);
+        } else {
+            return JsonResult.failure();
+        }
+    }
+
     /**
      * 获取全部昵称数据
      */
@@ -123,7 +137,7 @@ public class DataController {
     public JsonResult<List<NickName>> getAllNickName() {
         return JsonResult.success(dataService.getAllNickName());
     }
-                                  
+
     /**
      * 写入几条新的昵称
      */
@@ -137,7 +151,21 @@ public class DataController {
             return JsonResult.failure();
         }
     }
-                                  
+
+    /**
+     * 删除卡池数据
+     */
+    @Token
+    @GetMapping("removeNickName")
+    @ApiOperation("删除一批昵称信息，需要token")
+    public JsonResult<Boolean> removeNickName(@RequestHeader(value = "Authorization", required = false) String token, @RequestBody List<NickName> nickName) {
+        if (dataService.removeNickName(token, nickName)) {
+            return JsonResult.success(true);
+        } else {
+            return JsonResult.failure();
+        }
+    }
+
     /**
      * 根据用户版本号获取新的昵称数据
      */

@@ -14,4 +14,6 @@ public interface NickNameMapper {
     List<NickName> selectNickNameByVersion(@Param("version") Integer version);
 
     Integer insertNickName(List<NickName> nickName);
+
+    Integer deleteNickName(List<NickName> nickName);
 }

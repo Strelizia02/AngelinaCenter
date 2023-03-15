@@ -16,4 +16,6 @@ public interface PoolMapper {
     Integer selectPoolCount();
 
     Integer insertPoolData(List<PoolData> poolDatas);
+
+    Integer deletePoolData(List<PoolData> poolDatas);
 }

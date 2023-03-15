@@ -7,7 +7,8 @@
         <result column="version" property="version" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="selectAllNickName" resultMap="NickNameMap">
+
+  <select id="selectAllNickName" resultMap="NickNameMap">
         SELECT name, nick_name, version from a_nick_name
     </select>
 
@@ -15,11 +16,19 @@
         SELECT name, nick_name, version from a_nick_name
         where version = #{version}
     </select>
-    
+
     <insert id="insertNickName">
         <foreach collection="list" item="item">
         insert into a_nick_name (name, nick_name, version) values (#{item.name}, #{item.nickName}, #{item.version})
         on duplicate key update version=#{item.version}
         </foreach>
     </insert>
+
+    <delete id="deleteNickName">
+      <foreach collection="list" item="item">
+        delete from a_nick_name where `name` = #{item.name}
+        and nick_name = #{item.nickName}
+        and version = #{item.version}
+      </foreach>
+    </delete>
 </mapper>
